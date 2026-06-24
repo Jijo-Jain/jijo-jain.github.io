@@ -4,336 +4,659 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Jijo Jain — Data Analyst Portfolio</title>
-<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        navy: { 900: '#0f1f3d', 800: '#1a3259', 700: '#1B4F8A', 600: '#2563EB', 50: '#eff6ff' }
-      }
-    }
-  }
-}
-</script>
 <style>
-html { scroll-behavior: smooth; }
-body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-.fade-in { animation: fadeIn 0.5s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#1e293b;background:#fff;line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+
+/* ── NAV ── */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,box-shadow .3s;padding:0 2rem}
+#navbar.scrolled{background:#fff;box-shadow:0 1px 8px rgba(0,0,0,.1)}
+.nav-inner{max-width:1100px;margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:700;font-size:1.2rem;color:#fff;transition:color .3s}
+#navbar.scrolled .nav-logo{color:#0f2d5c}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-size:.9rem;font-weight:500;color:rgba(255,255,255,.85);transition:color .2s}
+#navbar.scrolled .nav-links a{color:#475569}
+.nav-links a:hover{color:#60a5fa}
+#navbar.scrolled .nav-links a:hover{color:#2563eb}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;transition:background .3s}
+#navbar.scrolled .hamburger span{background:#0f2d5c}
+.mobile-menu{display:none;flex-direction:column;gap:1rem;padding:1rem 2rem 1.5rem;background:#fff;border-bottom:1px solid #e2e8f0}
+.mobile-menu a{font-size:.95rem;font-weight:500;color:#334155}
+
+/* ── HERO ── */
+#home{min-height:100vh;background:linear-gradient(135deg,#0f1f3d 0%,#1B4F8A 60%,#2563EB 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem}
+.hero-content{max-width:700px}
+.hero-name{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:.5rem}
+.hero-tagline{font-size:clamp(1rem,2.5vw,1.35rem);color:rgba(255,255,255,.75);margin-bottom:1.5rem}
+.hero-rotating{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:600;color:#93c5fd;min-height:2rem;margin-bottom:2rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:2.5rem}
+.pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#e0f2fe;padding:.35rem .9rem;border-radius:999px;font-size:.82rem;font-weight:500}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+.btn-primary{background:#fff;color:#0f1f3d;padding:.75rem 2rem;border-radius:.5rem;font-weight:700;font-size:.95rem;transition:opacity .2s}
+.btn-primary:hover{opacity:.9}
+.btn-outline{border:2px solid rgba(255,255,255,.6);color:#fff;padding:.75rem 2rem;border-radius:.5rem;font-weight:600;font-size:.95rem;transition:all .2s}
+.btn-outline:hover{background:rgba(255,255,255,.1)}
+
+/* ── SECTIONS ── */
+section{padding:5rem 2rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2563eb;margin-bottom:.5rem}
+.section-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#0f2d5c;margin-bottom:.5rem}
+.section-divider{width:3rem;height:4px;background:linear-gradient(90deg,#2563eb,#60a5fa);border-radius:2px;margin-bottom:2.5rem}
+
+/* ── ABOUT ── */
+#about{background:#f8fafc}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.about-text{font-size:1rem;color:#475569;line-height:1.8}
+.about-text p+p{margin-top:1rem}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stat-card{background:#fff;border-radius:.75rem;padding:1.25rem;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid #e2e8f0;text-align:center}
+.stat-num{font-size:1.6rem;font-weight:800;color:#2563eb}
+.stat-desc{font-size:.8rem;color:#64748b;margin-top:.2rem}
+
+/* ── SKILLS ── */
+#skills{background:#fff}
+.skill-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+.skill-cat{background:#f8fafc;border-radius:.75rem;padding:1.5rem;border:1px solid #e2e8f0}
+.skill-cat-title{font-weight:700;font-size:.95rem;color:#0f2d5c;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.skill-tag{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:999px;padding:.25rem .7rem;font-size:.78rem;font-weight:500}
+.skill-tag.green{background:#f0fdf4;color:#15803d;border-color:#bbf7d0}
+.skill-tag.purple{background:#faf5ff;color:#7e22ce;border-color:#e9d5ff}
+.skill-tag.orange{background:#fff7ed;color:#c2410c;border-color:#fed7aa}
+
+/* ── PROJECTS ── */
+#projects{background:#f8fafc}
+.filter-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.filter-btn{padding:.4rem 1.1rem;border-radius:999px;border:1.5px solid #cbd5e1;background:#fff;color:#475569;font-size:.85rem;font-weight:500;cursor:pointer;transition:all .2s}
+.filter-btn.active,.filter-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.project-card{background:#fff;border-radius:1rem;border:1px solid #e2e8f0;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.project-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.project-card.hidden{display:none}
+.card-header{background:linear-gradient(135deg,#0f1f3d,#1B4F8A);padding:1.25rem;display:flex;align-items:center;gap:.75rem}
+.card-emoji{font-size:1.6rem}
+.card-title{font-weight:700;font-size:.95rem;color:#fff;line-height:1.3}
+.card-module{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.2rem}
+.card-body{padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:1rem}
+.card-cat{display:inline-block;padding:.2rem .7rem;border-radius:999px;font-size:.75rem;font-weight:600}
+.cat-Tableau{background:#dbeafe;color:#1d4ed8}
+.cat-SQL{background:#dcfce7;color:#15803d}
+.cat-Python{background:#ede9fe;color:#6d28d9}
+.cat-Big{background:#ffedd5;color:#c2410c}
+.cat-Deep{background:#ffe4e6;color:#be123c}
+.card-stats{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.card-stat{background:#f8fafc;border-radius:.4rem;padding:.4rem .6rem;font-size:.75rem;color:#475569;border:1px solid #f1f5f9}
+.card-desc{font-size:.82rem;color:#64748b;line-height:1.6;flex:1}
+.card-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:auto}
+.card-tag{background:#f1f5f9;color:#475569;border-radius:999px;padding:.2rem .55rem;font-size:.72rem;font-weight:500}
+
+/* ── EXPERIENCE ── */
+#experience{background:#fff}
+.timeline{display:flex;flex-direction:column;gap:0;position:relative}
+.timeline::before{content:'';position:absolute;left:1.25rem;top:.5rem;bottom:.5rem;width:2px;background:#e2e8f0}
+.tl-item{display:flex;gap:2rem;position:relative;padding-bottom:2rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot-wrap{flex-shrink:0;width:2.5rem;display:flex;justify-content:center;padding-top:.25rem}
+.tl-dot{width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #2563eb;background:#2563eb;position:relative;z-index:1}
+.tl-dot.blue{background:#2563eb;box-shadow:0 0 0 2px #2563eb}
+.tl-dot.indigo{background:#4f46e5;box-shadow:0 0 0 2px #4f46e5}
+.tl-content{flex:1}
+.tl-header{margin-bottom:.75rem}
+.tl-title{font-weight:700;font-size:1.05rem;color:#0f2d5c}
+.tl-company{font-size:.9rem;color:#2563eb;font-weight:600}
+.tl-period{font-size:.82rem;color:#94a3b8;margin-top:.15rem}
+.tl-bullets{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.tl-bullets li{font-size:.88rem;color:#475569;padding-left:1.1rem;position:relative}
+.tl-bullets li::before{content:'▸';position:absolute;left:0;color:#60a5fa}
+
+/* ── CONTACT ── */
+#contact{background:linear-gradient(135deg,#0f1f3d 0%,#1B4F8A 100%);text-align:center}
+#contact .section-label{color:#93c5fd}
+#contact .section-title{color:#fff}
+#contact .section-divider{margin-left:auto;margin-right:auto;background:linear-gradient(90deg,#60a5fa,#93c5fd)}
+.contact-subtitle{color:rgba(255,255,255,.7);margin-bottom:2.5rem;font-size:1rem}
+.contact-links{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+.contact-link{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:.75rem 1.5rem;border-radius:.5rem;font-size:.9rem;font-weight:500;transition:background .2s}
+.contact-link:hover{background:rgba(255,255,255,.2)}
+.contact-link svg{flex-shrink:0}
+
+/* ── FOOTER ── */
+footer{background:#0a1628;color:rgba(255,255,255,.45);text-align:center;padding:1.5rem;font-size:.82rem}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .about-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .timeline::before{left:.75rem}
+}
+@media(max-width:480px){
+  .projects-grid{grid-template-columns:1fr}
+}
+
+/* ── FADE-IN ON SCROLL ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
 </style>
 </head>
 <body>
-<div id="root"></div>
-<script type="text/babel">
-const { useState, useEffect, useRef } = React;
 
-const SKILLS = {
-  "Data & Analytics": ["Tableau","TabPy","Tableau Prep Builder","EDA","Data Visualisation","Dashboard Design","Data Storytelling","Statistical Analysis","Time Series Analysis"],
-  "Python & Libraries": ["Python","pandas","NumPy","matplotlib","seaborn","scikit-learn","TensorFlow","Keras","Google Colab"],
-  "Databases & Big Data": ["SQL (MySQL)","Database Design","Data Normalisation (3NF)","Window Functions","Stored Procedures","Query Optimisation","Apache Hadoop","HDFS","MapReduce","ETL Pipelines"],
-  "Machine Learning & AI": ["SVM","Random Forest","XGBoost","K-Means Clustering","DBSCAN","Anomaly Detection","CNN","MobileNetV2","U-Net","Transfer Learning","Hyperparameter Tuning"]
-};
-
-const PROJECTS = [
-  { id:1, emoji:"🚦", title:"UK Road Safety Analytics Dashboard", module:"Visualisation & Storytelling using Tableau", date:"May 2026", category:"Tableau", tags:["Tableau","TabPy","Python","Dashboard","LOD"], stats:["100,927 collisions","1,502 fatalities","9 visualisations","3 dashboards + Story"], description:"Built a multi-dashboard analytics solution on the UK government's STATS19 2024 collision dataset. Cleaned and feature-engineered 100,927 records across three joined tables, creating 8 computed fields. Integrated TabPy (Python in Tableau) to compute ML risk scores, anomaly detection, and a driver risk index. Delivered 9 visualisations across 3 dashboards and an 8-part Tableau Story. KPIs: fatal severity rate 1.49%, 60 mph zone fatal rate 4.65%." },
-  { id:2, emoji:"🌍", title:"Global Health Visual Analytics (WHO Life Expectancy)", module:"Visualisation & Storytelling using Tableau", date:"May 2026", category:"Tableau", tags:["Tableau","Tableau Prep","WHO Data","Excel","Dashboard"], stats:["193 countries","2000–2015 (16 yrs)","7 visualisations","3 dashboards + Story"], description:"Cleaned and visualised the WHO Life Expectancy dataset (2,938 rows, 22 variables, 2,500+ missing entries) using Tableau Prep Builder. Built 7 visualisations including choropleth maps, scatter plots, dual-axis HIV/AIDS charts, and immunisation matrices. Delivered 3 dashboards and a Tableau Story revealing correlations between GDP, immunisation coverage, and life expectancy across developed vs. developing nations." },
-  { id:3, emoji:"🏥", title:"Cardiology Clinic Relational Database (MySQL)", module:"Enterprise Data Warehouses & Database Management", date:"January 2026", category:"SQL", tags:["MySQL","SQL","ERD","3NF","Window Functions","Stored Procedures"], stats:["14 entities defined","4 M:N relationships","5 advanced SQL queries","RANK() + EXPLAIN optimisation"], description:"Designed and implemented a fully normalised cardiology clinic database (cardiology_clinic_db) in MySQL. Defined 14 entities covering patient demographics, clinical visits, vital signs, diagnoses, procedures, insurance, and billing. Created a full ERD, normalised all tables to 3NF, and wrote 5 advanced analytical queries using RANK() window functions, correlated subqueries, and CASE expressions. Built stored procedures, a stored function for patient age calculation, and performed query optimisation using EXPLAIN." },
-  { id:4, emoji:"📈", title:"Time Series Temperature Forecasting (1981–1990)", module:"Fundamentals of Data Analytics", date:"September 2025", category:"Python / ML", tags:["Python","Time Series","Random Forest","EDA","Feature Engineering","GridSearchCV"], stats:["Daily temps 1981–1990","RF: R² = 0.69","LR: R² = 0.68","4 business recommendations"], description:"End-to-end forecasting on a daily minimum temperature dataset (1981–1990). Performed seasonal decomposition, 7-day and 30-day rolling mean analysis, and outlier detection using both IQR and Z-score methods. Engineered lag variables, rolling window statistics, and seasonal indicators. Tuned Random Forest (max_depth=5, n_estimators=300) outperformed Linear Regression across all metrics (R²=0.69, lower MAE/MSE). Delivered four actionable business recommendations for energy, agriculture, and risk management." },
-  { id:5, emoji:"🧬", title:"Breast Cancer Classification: SVM vs RF vs XGBoost", module:"Predictive Analytics & Machine Learning using Python", date:"October 2025", category:"Python / ML", tags:["Python","SVM","XGBoost","Random Forest","scikit-learn","GridSearchCV"], stats:["98% accuracy (SVM tuned)","569 records · 30 features","3 models compared","3D decision boundary viz"], description:"Compared SVM, Random Forest, and XGBoost on the Breast Cancer Wisconsin dataset (569 records, 30 features). Performed full EDA including correlation heatmap and density plots. Baseline results: SVM 96.49%, Random Forest 97.36%, XGBoost 97.3%. After GridSearchCV hyperparameter tuning, SVM (linear, C=0.1) achieved 98% accuracy with F1=0.97. Built a 3D SVM decision plane visualisation. Error analysis revealed models misclassified different individual patients despite identical confusion matrices." },
-  { id:6, emoji:"🎵", title:"Spotify Big Data Pipeline (Hadoop + ML Clustering)", module:"Big Data Analytics", date:"February 2026", category:"Big Data", tags:["Hadoop","HDFS","MapReduce","K-Means","DBSCAN","Python"], stats:["1M+ playlists (~1 GB)","3 popularity tiers","Silhouette analysis","MapReduce vs Spark comparison"], description:"Built a distributed big data pipeline on the Spotify Million Playlist Dataset (AIcrowd) using Hadoop HDFS (128 MB blocks, replication factor 3). Implemented custom Mapper and Reducer logic to aggregate track occurrences across 1M+ playlists. Applied K-Means clustering to segment tracks into Hits, Emerging, and Long-tail tiers using silhouette scoring, and DBSCAN for anomaly detection of viral popularity spikes. Compared MapReduce vs Apache Spark and justified architecture against the five V's of big data." },
-  { id:7, emoji:"🌿", title:"Plant Disease Detection: CNN vs MobileNetV2", module:"Computer Vision & Artificial Intelligence", date:"May 2026", category:"Deep Learning", tags:["TensorFlow","CNN","MobileNetV2","Transfer Learning","Image Augmentation"], stats:["54,305 images · 38 classes","CNN: 68.72% accuracy","MobileNetV2: 94.3%","+25.6 pp improvement"], description:"Classified 38 plant disease categories across 14 crop types using the PlantVillage dataset (54,305 RGB images, 36:1 class imbalance). Custom CNN (4-block, 662K params) achieved 68.72% test accuracy; classic overfitting observed from epoch 4. MobileNetV2 with two-stage transfer learning (freeze → fine-tune 30 base layers) reached 94.3% — a 25.6 percentage point improvement — with >0.9 F1 across nearly all 38 classes. Misclassification analysis confirmed biologically coherent errors between same-crop disease pairs." },
-  { id:8, emoji:"🧠", title:"Brain Tumour MRI Segmentation: U-Net vs DeepLabV3+ vs MedFusionNet", module:"Computer Vision & Artificial Intelligence", date:"May 2026", category:"Deep Learning", tags:["TensorFlow","U-Net","DeepLabV3+","MedFusionNet","Medical Imaging","Dice Score"], stats:["3,929 MRI pairs · 110 patients","U-Net Dice: 0.9040","MedFusionNet Precision: 0.926","0.09% false positive rate"], description:"Compared U-Net, DeepLabV3+, and custom-built MedFusionNet for brain tumour boundary segmentation on the LGG Brain MRI dataset (Buda et al. 2019). All three models trained and tested under identical conditions. Results: U-Net achieved the best Dice (0.9040) and Recall (0.8771) for detection sensitivity. DeepLabV3+ achieved the most precise boundaries (Hausdorff distance 13.07 mm) for radiotherapy planning. Custom MedFusionNet achieved the highest Precision (0.926) and Specificity (0.9991) — only 36,148 false positives out of 39M pixels (0.09%) — best for surgical planning." }
-];
-
-const EXPERIENCE = [
-  { title:"Process Lead", company:"Amazon Development Centre (India)", period:"Jul 2022 – Jun 2023", color:"bg-blue-700", bullets:["Led end-to-end operational processes and technology deployments across cross-functional teams","Built Tableau dashboards and multi-level escalation metrics, improving SLA adherence","Reduced processing time by 10% through targeted quality metric optimisation","Owned weekly metrics tracking and presented findings in Weekly Business Reviews"] },
-  { title:"Senior Data Associate", company:"Amazon Development Centre (India)", period:"Oct 2020 – Jun 2022", color:"bg-blue-600", bullets:["Owned Goal Success Rate for Alexa Shopping — RCA and failure metrics improved customer experience by 11%","Led migration from Excel to tool-based systems, increasing team productivity by 30%","Extracted data from SQL databases for daily/weekly metrics reporting for the full QA team","Produced weekly and monthly business review reports with full database management"] },
-  { title:"Data Associate", company:"Amazon Development Centre (India)", period:"Jul 2018 – Sep 2020", color:"bg-blue-500", bullets:["Scaled the team from 6 to 130 associates — led hiring, process setup, SOPs, and stakeholder comms","Improved Alexa's NLU by analysing diverse data formats and delivering insights to the ML engineering team","Served as SME for Root Cause Analysis, leading ML-related analysis projects for Alexa devices","Delivered results across 50+ individual projects with standardised operating procedures"] },
-  { title:"Process Associate", company:"IndiGo Airlines", period:"Jan 2016 – Jul 2017", color:"bg-indigo-500", bullets:["Delivered SME-led onboarding training, reducing onboarding time by 30%","Customised MS Dynamics CRM 2011 — improved system functionality and user experience","Managed data import/export workflows, achieving 25% improvement in data management efficiency"] }
-];
-
-const CATEGORIES = ["All","Tableau","SQL","Python / ML","Big Data","Deep Learning"];
-
-const catStyle = { "Tableau":"bg-blue-100 text-blue-800", "SQL":"bg-emerald-100 text-emerald-800", "Python / ML":"bg-purple-100 text-purple-800", "Big Data":"bg-orange-100 text-orange-800", "Deep Learning":"bg-rose-100 text-rose-800" };
-const skillBg = ["bg-blue-50 text-blue-700 border border-blue-200","bg-indigo-50 text-indigo-700 border border-indigo-200","bg-emerald-50 text-emerald-700 border border-emerald-200","bg-purple-50 text-purple-700 border border-purple-200"];
-
-function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const h = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', h);
-    return () => window.removeEventListener('scroll', h);
-  }, []);
-  return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md border-b border-gray-200' : 'bg-transparent'}`}>
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#home" className={`font-bold text-xl transition-colors ${scrolled ? 'text-blue-900' : 'text-white'}`}>Jijo Jain</a>
-        <div className="hidden md:flex items-center gap-8">
-          {['About','Skills','Projects','Experience','Contact'].map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} className={`text-sm font-medium transition-colors hover:text-blue-400 ${scrolled ? 'text-gray-600 hover:text-blue-700' : 'text-white/80'}`}>{l}</a>
-          ))}
-          <a href="mailto:jijo.jain4@gmail.com" className="text-sm font-semibold bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors">Get in Touch</a>
-        </div>
-        <button onClick={() => setOpen(!open)} className={`md:hidden ${scrolled ? 'text-gray-700' : 'text-white'}`} aria-label="Menu">
-          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        </button>
-      </div>
-      {open && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-3 shadow-lg">
-          {['About','Skills','Projects','Experience','Contact'].map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)} className="block text-sm font-medium text-gray-700 hover:text-blue-700">{l}</a>
-          ))}
-        </div>
-      )}
-    </nav>
-  );
-}
-
-function Hero() {
-  const titles = ["Data Analyst","6 Years Amazon Alexa","MSc Data Analytics","SQL · Python · Tableau · ML"];
-  const [idx, setIdx] = useState(0);
-  const [visible, setVisible] = useState(true);
-  useEffect(() => {
-    const t = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => { setIdx(i => (i+1) % titles.length); setVisible(true); }, 300);
-    }, 2800);
-    return () => clearInterval(t);
-  }, []);
-  return (
-    <section id="home" className="min-h-screen flex items-center" style={{background:'linear-gradient(135deg,#0f1f3d 0%,#1B4F8A 60%,#1e3a8a 100%)'}}>
-      <div className="max-w-6xl mx-auto px-6 py-32 w-full">
-        <div className="max-w-3xl">
-          <p className="text-blue-300 font-medium mb-4 tracking-widest uppercase text-xs">Portfolio · Data Analyst</p>
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 leading-none tracking-tight">Jijo<br/>Jain</h1>
-          <div className="h-10 mb-8 overflow-hidden">
-            <p className={`text-2xl md:text-3xl text-blue-200 font-light transition-all duration-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
-               style={{transform: visible ? 'translateY(0)' : 'translateY(8px)', opacity: visible ? 1 : 0, transition:'all 0.3s ease'}}>
-              {titles[idx]}
-            </p>
-          </div>
-          <p className="text-blue-100/80 text-lg max-w-xl mb-10 leading-relaxed">
-            I turn raw data into decisions that actually stick — 6 years at Amazon Alexa, now deepening expertise through an MSc in Data Analytics.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a href="#projects" className="bg-white text-blue-900 font-semibold px-7 py-3.5 rounded-xl hover:bg-blue-50 transition-colors text-sm">View Projects →</a>
-            <a href="https://www.linkedin.com/in/jijojain" target="_blank" className="border border-white/60 text-white font-semibold px-7 py-3.5 rounded-xl hover:bg-white/10 transition-colors text-sm">LinkedIn</a>
-            <a href="mailto:jijo.jain4@gmail.com" className="border border-blue-400/50 text-blue-200 font-semibold px-7 py-3.5 rounded-xl hover:bg-blue-800/50 transition-colors text-sm">Email Me</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function About() {
-  return (
-    <section id="about" className="py-28 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
-        <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-2">About</p>
-        <h2 className="text-4xl font-bold text-gray-900 mb-2">Who I Am</h2>
-        <div className="w-12 h-1 bg-blue-700 mb-12 rounded-full"></div>
-        <div className="grid md:grid-cols-5 gap-16 items-start">
-          <div className="md:col-span-3 space-y-5 text-gray-600 leading-relaxed text-lg">
-            <p>I am a data analyst with <strong className="text-gray-900">6 years of experience at Amazon</strong> (Alexa Shopping organisation), where I grew from Data Associate to Process Lead — scaling teams from 6 to 130 people, building automated reporting systems, and driving measurable operational improvements across cross-functional programmes.</p>
-            <p>I am currently completing an <strong className="text-gray-900">MSc in Data Analytics</strong>, building hands-on projects across Tableau dashboards, SQL database architecture, machine learning classification, big data pipelines (Hadoop), and deep learning for computer vision — applying real-world context to every technique I apply.</p>
-            <p>My philosophy: I do not just report on data — I build the systems that make reporting <em>faster, more accurate, and more useful</em>. Whether automating pipelines, owning root cause analysis, or translating model outputs into business decisions, I am focused on outcomes, not just outputs.</p>
-            <div className="pt-4 flex flex-wrap gap-3">
-              <a href="https://www.linkedin.com/in/jijojain" target="_blank" className="inline-flex items-center gap-2 bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-blue-800 transition-colors">LinkedIn Profile →</a>
-              <a href="mailto:jijo.jain4@gmail.com" className="inline-flex items-center gap-2 border border-gray-300 text-gray-700 text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-gray-50 transition-colors">jijo.jain4@gmail.com</a>
-            </div>
-          </div>
-          <div className="md:col-span-2 grid grid-cols-2 gap-4">
-            {[
-              { n:"6", l:"Years at Amazon", s:"Data Associate → Process Lead" },
-              { n:"8", l:"MSc Projects", s:"Tableau · SQL · ML · Deep Learning" },
-              { n:"98%", l:"Best ML Accuracy", s:"SVM on Breast Cancer data" },
-              { n:"0.904", l:"MRI Dice Score", s:"U-Net brain tumour segmentation" },
-              { n:"11%", l:"Customer Experience", s:"Alexa Shopping GSR improvement" },
-              { n:"30%", l:"Productivity Gain", s:"Tool migration at Amazon" },
-            ].map(s => (
-              <div key={s.l} className="bg-blue-50 border border-blue-100 rounded-2xl p-4">
-                <p className="text-2xl font-bold text-blue-800">{s.n}</p>
-                <p className="text-xs font-semibold text-blue-700 mt-1">{s.l}</p>
-                <p className="text-xs text-gray-500 mt-0.5 leading-tight">{s.s}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Skills() {
-  return (
-    <section id="skills" className="py-28 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-6">
-        <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-2">Expertise</p>
-        <h2 className="text-4xl font-bold text-gray-900 mb-2">Skills</h2>
-        <div className="w-12 h-1 bg-blue-700 mb-12 rounded-full"></div>
-        <div className="grid md:grid-cols-2 gap-6">
-          {Object.entries(SKILLS).map(([cat, skills], i) => (
-            <div key={cat} className="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-bold text-gray-900 mb-5 flex items-center gap-3">
-                <span className="w-8 h-8 rounded-lg bg-blue-700 text-white text-xs flex items-center justify-center font-bold">{['DA','PY','DB','ML'][i]}</span>
-                {cat}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {skills.map(s => (
-                  <span key={s} className={`text-xs px-3 py-1.5 rounded-full font-medium ${skillBg[i]}`}>{s}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Projects() {
-  const [cat, setCat] = useState("All");
-  const [exp, setExp] = useState(null);
-  const filtered = cat === "All" ? PROJECTS : PROJECTS.filter(p => p.category === cat);
-  return (
-    <section id="projects" className="py-28 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
-        <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-2">Academic Projects</p>
-        <h2 className="text-4xl font-bold text-gray-900 mb-2">Projects</h2>
-        <div className="w-12 h-1 bg-blue-700 mb-8 rounded-full"></div>
-        <div className="flex flex-wrap gap-2 mb-10">
-          {CATEGORIES.map(c => (
-            <button key={c} onClick={() => setCat(c)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${cat===c ? 'bg-blue-700 text-white shadow-sm' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
-              {c}
-            </button>
-          ))}
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map(p => (
-            <div key={p.id} className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
-              <div className="bg-gradient-to-br from-blue-800 to-blue-700 p-5 flex items-center justify-between">
-                <span className="text-4xl">{p.emoji}</span>
-                <span className={`text-xs px-3 py-1 rounded-full font-semibold ${catStyle[p.category]||'bg-gray-100 text-gray-700'}`}>{p.category}</span>
-              </div>
-              <div className="p-5 flex flex-col flex-1">
-                <p className="text-xs text-blue-500 font-semibold mb-1.5">{p.date} · {p.module}</p>
-                <h3 className="font-bold text-gray-900 mb-3 leading-snug text-sm">{p.title}</h3>
-                <div className="grid grid-cols-2 gap-1.5 mb-3">
-                  {p.stats.map(s => <div key={s} className="text-xs bg-blue-50 text-blue-700 px-2 py-1.5 rounded-lg font-medium leading-tight">{s}</div>)}
-                </div>
-                <div className="flex flex-wrap gap-1 mb-4">
-                  {p.tags.map(t => <span key={t} className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-md">{t}</span>)}
-                </div>
-                {exp === p.id && (
-                  <p className="text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4 mb-3 fade-in">{p.description}</p>
-                )}
-                <button onClick={() => setExp(exp===p.id ? null : p.id)}
-                  className="mt-auto text-xs text-blue-600 font-semibold hover:text-blue-800 text-left">
-                  {exp===p.id ? '▲ Show less' : '▼ Read full description'}
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Experience() {
-  return (
-    <section id="experience" className="py-28 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-6">
-        <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-2">Work History</p>
-        <h2 className="text-4xl font-bold text-gray-900 mb-2">Experience</h2>
-        <div className="w-12 h-1 bg-blue-700 mb-12 rounded-full"></div>
-        <div className="relative max-w-3xl">
-          <div className="absolute left-5 top-0 bottom-0 w-px bg-blue-200"></div>
-          <div className="space-y-8">
-            {EXPERIENCE.map((e, i) => (
-              <div key={i} className="relative pl-14">
-                <div className={`absolute left-3 top-3 w-4 h-4 rounded-full ${e.color} border-2 border-white shadow-md`}></div>
-                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-                    <div>
-                      <h3 className="font-bold text-gray-900 text-lg">{e.title}</h3>
-                      <p className="text-blue-700 text-sm font-semibold mt-0.5">{e.company}</p>
-                    </div>
-                    <span className="text-xs text-gray-500 bg-gray-100 px-3 py-1.5 rounded-full font-medium whitespace-nowrap">{e.period}</span>
-                  </div>
-                  <ul className="space-y-2">
-                    {e.bullets.map((b, j) => (
-                      <li key={j} className="text-sm text-gray-600 flex gap-2.5">
-                        <span className="text-blue-500 mt-1 shrink-0 text-xs">▸</span>
-                        <span className="leading-relaxed">{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Contact() {
-  return (
-    <section id="contact" className="py-28" style={{background:'linear-gradient(135deg,#0f1f3d 0%,#1B4F8A 100%)'}}>
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        <p className="text-blue-300 text-sm font-semibold uppercase tracking-widest mb-4">Let's Talk</p>
-        <h2 className="text-4xl font-bold text-white mb-4">Open to Opportunities</h2>
-        <p className="text-blue-200/80 mb-12 max-w-xl mx-auto text-lg leading-relaxed">
-          Looking for Data Analyst roles where I can apply my technical skills to drive real business outcomes. Whether it's a quick question or a role to discuss — I'd love to hear from you.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <a href="mailto:jijo.jain4@gmail.com"
-            className="bg-white text-blue-900 font-bold px-8 py-4 rounded-xl hover:bg-blue-50 transition-colors text-sm">
-            ✉ jijo.jain4@gmail.com
-          </a>
-          <a href="https://www.linkedin.com/in/jijojain" target="_blank"
-            className="border-2 border-white/50 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-colors text-sm">
-            LinkedIn → /in/jijojain
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="bg-blue-950 text-blue-400 py-8 text-center">
-      <p className="text-sm">© 2026 Jijo Jain · Built with React · <a href="https://www.linkedin.com/in/jijojain" target="_blank" className="hover:text-white transition-colors">LinkedIn</a></p>
-    </footer>
-  );
-}
-
-function App() {
-  return (
-    <div>
-      <Navbar/>
-      <Hero/>
-      <About/>
-      <Skills/>
-      <Projects/>
-      <Experience/>
-      <Contact/>
-      <Footer/>
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">Jijo Jain</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
     </div>
-  );
-}
+    <div class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#skills" onclick="closeMobile()">Skills</a>
+    <a href="#projects" onclick="closeMobile()">Projects</a>
+    <a href="#experience" onclick="closeMobile()">Experience</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+  </div>
+</nav>
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+<!-- HERO -->
+<section id="home">
+  <div class="hero-content">
+    <div class="hero-name">Jijo Jain</div>
+    <div class="hero-tagline">MSc Data Analytics · 6 Years Amazon Experience</div>
+    <div class="hero-rotating" id="rotating-title">Data Analyst</div>
+    <div class="hero-pills">
+      <span class="pill">Python</span>
+      <span class="pill">SQL</span>
+      <span class="pill">Tableau</span>
+      <span class="pill">Machine Learning</span>
+      <span class="pill">Deep Learning</span>
+      <span class="pill">Big Data</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label reveal">About Me</div>
+    <div class="section-title reveal">Turning Data into Decisions</div>
+    <div class="section-divider reveal"></div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a Data Analyst with 6 years at Amazon Development Centre (India) and a current MSc in Data Analytics. I specialise in building end-to-end analytics solutions — from SQL database design and Python ML pipelines to Tableau dashboards and deep learning models.</p>
+        <p>At Amazon, I owned Goal Success Rate for Alexa Shopping, led a team scale from 6 to 130 associates, and drove an 11% improvement in customer experience through rigorous data analysis and root cause investigation.</p>
+        <p>My MSc projects span the full data science stack: Tableau storytelling on real government datasets, distributed big data pipelines in Hadoop, and computer vision models achieving 94%+ accuracy on medical imaging tasks.</p>
+      </div>
+      <div class="stat-grid reveal">
+        <div class="stat-card">
+          <div class="stat-num">6+</div>
+          <div class="stat-desc">Years at Amazon</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">8</div>
+          <div class="stat-desc">MSc Projects</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">98%</div>
+          <div class="stat-desc">SVM Accuracy (Cancer)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">94%</div>
+          <div class="stat-desc">Transfer Learning Accuracy</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">11%</div>
+          <div class="stat-desc">CX Improvement at Amazon</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1M+</div>
+          <div class="stat-desc">Spotify Playlists Processed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label reveal">Skills</div>
+    <div class="section-title reveal">Technical Toolkit</div>
+    <div class="section-divider reveal"></div>
+    <div class="skill-cats reveal">
+      <div class="skill-cat">
+        <div class="skill-cat-title">📊 Data &amp; Analytics</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">TabPy</span>
+          <span class="skill-tag">Tableau Prep Builder</span>
+          <span class="skill-tag">EDA</span>
+          <span class="skill-tag">Data Visualisation</span>
+          <span class="skill-tag">Dashboard Design</span>
+          <span class="skill-tag">Statistical Analysis</span>
+          <span class="skill-tag">Time Series</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">🐍 Python &amp; Libraries</div>
+        <div class="skill-tags">
+          <span class="skill-tag purple">Python</span>
+          <span class="skill-tag purple">pandas</span>
+          <span class="skill-tag purple">NumPy</span>
+          <span class="skill-tag purple">matplotlib</span>
+          <span class="skill-tag purple">seaborn</span>
+          <span class="skill-tag purple">scikit-learn</span>
+          <span class="skill-tag purple">TensorFlow</span>
+          <span class="skill-tag purple">Keras</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">🗄️ Databases &amp; Big Data</div>
+        <div class="skill-tags">
+          <span class="skill-tag green">SQL (MySQL)</span>
+          <span class="skill-tag green">Database Design</span>
+          <span class="skill-tag green">3NF Normalisation</span>
+          <span class="skill-tag green">Window Functions</span>
+          <span class="skill-tag green">Apache Hadoop</span>
+          <span class="skill-tag green">HDFS</span>
+          <span class="skill-tag green">MapReduce</span>
+          <span class="skill-tag green">ETL Pipelines</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">🤖 ML &amp; AI</div>
+        <div class="skill-tags">
+          <span class="skill-tag orange">SVM</span>
+          <span class="skill-tag orange">Random Forest</span>
+          <span class="skill-tag orange">XGBoost</span>
+          <span class="skill-tag orange">K-Means</span>
+          <span class="skill-tag orange">DBSCAN</span>
+          <span class="skill-tag orange">CNN</span>
+          <span class="skill-tag orange">MobileNetV2</span>
+          <span class="skill-tag orange">U-Net</span>
+          <span class="skill-tag orange">Transfer Learning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label reveal">Projects</div>
+    <div class="section-title reveal">MSc Data Analytics Work</div>
+    <div class="section-divider reveal"></div>
+    <div class="filter-row reveal" id="filter-row">
+      <button class="filter-btn active" data-cat="All">All</button>
+      <button class="filter-btn" data-cat="Tableau">Tableau</button>
+      <button class="filter-btn" data-cat="SQL">SQL</button>
+      <button class="filter-btn" data-cat="Python / ML">Python / ML</button>
+      <button class="filter-btn" data-cat="Big Data">Big Data</button>
+      <button class="filter-btn" data-cat="Deep Learning">Deep Learning</button>
+    </div>
+    <div class="projects-grid" id="projects-grid">
+
+      <div class="project-card reveal" data-cat="Tableau">
+        <div class="card-header">
+          <span class="card-emoji">🚦</span>
+          <div>
+            <div class="card-title">UK Road Safety Analytics Dashboard</div>
+            <div class="card-module">Visualisation &amp; Storytelling using Tableau · May 2026</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat cat-Tableau">Tableau</span>
+          <div class="card-stats">
+            <div class="card-stat">100,927 collisions</div>
+            <div class="card-stat">1,502 fatalities</div>
+            <div class="card-stat">9 visualisations</div>
+            <div class="card-stat">3 dashboards + Story</div>
+          </div>
+          <div class="card-desc">Multi-dashboard analytics on the UK STATS19 2024 dataset. Cleaned 100,927 collision records, integrated TabPy (Python in Tableau) for ML risk scores and anomaly detection, delivered 9 visualisations across 3 dashboards and an 8-part Story.</div>
+          <div class="card-tags">
+            <span class="card-tag">Tableau</span><span class="card-tag">TabPy</span><span class="card-tag">Python</span><span class="card-tag">LOD</span><span class="card-tag">Dashboard</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="Tableau">
+        <div class="card-header">
+          <span class="card-emoji">🌍</span>
+          <div>
+            <div class="card-title">Global Health Visual Analytics (WHO Life Expectancy)</div>
+            <div class="card-module">Visualisation &amp; Storytelling using Tableau · May 2026</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat cat-Tableau">Tableau</span>
+          <div class="card-stats">
+            <div class="card-stat">193 countries</div>
+            <div class="card-stat">2000–2015 (16 yrs)</div>
+            <div class="card-stat">7 visualisations</div>
+            <div class="card-stat">3 dashboards + Story</div>
+          </div>
+          <div class="card-desc">Cleaned WHO Life Expectancy dataset (2,938 rows, 2,500+ missing entries) with Tableau Prep Builder. Built choropleth maps, dual-axis HIV/AIDS charts, and immunisation matrices revealing GDP–life expectancy correlations across developed vs developing nations.</div>
+          <div class="card-tags">
+            <span class="card-tag">Tableau</span><span class="card-tag">Tableau Prep</span><span class="card-tag">WHO Data</span><span class="card-tag">Dashboard</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="SQL">
+        <div class="card-header">
+          <span class="card-emoji">🏥</span>
+          <div>
+            <div class="card-title">Cardiology Clinic Relational Database (MySQL)</div>
+            <div class="card-module">Enterprise Data Warehouses &amp; Database Management · Jan 2026</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat cat-SQL">SQL</span>
+          <div class="card-stats">
+            <div class="card-stat">14 entities</div>
+            <div class="card-stat">4 M:N relationships</div>
+            <div class="card-stat">5 advanced queries</div>
+            <div class="card-stat">RANK() + EXPLAIN</div>
+          </div>
+          <div class="card-desc">Designed and implemented a fully normalised cardiology clinic database (cardiology_clinic_db) in MySQL. 14 entities covering patient records, clinical visits, diagnoses, procedures, and billing. Built stored procedures, window functions, and query optimisation with EXPLAIN.</div>
+          <div class="card-tags">
+            <span class="card-tag">MySQL</span><span class="card-tag">ERD</span><span class="card-tag">3NF</span><span class="card-tag">Window Functions</span><span class="card-tag">Stored Procedures</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="Python / ML">
+        <div class="card-header">
+          <span class="card-emoji">📈</span>
+          <div>
+            <div class="card-title">Time Series Temperature Forecasting (1981–1990)</div>
+            <div class="card-module">Fundamentals of Data Analytics · Sep 2025</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat cat-Python">Python / ML</span>
+          <div class="card-stats">
+            <div class="card-stat">Daily temps 1981–1990</div>
+            <div class="card-stat">RF: R² = 0.69</div>
+            <div class="card-stat">LR: R² = 0.68</div>
+            <div class="card-stat">4 recommendations</div>
+          </div>
+          <div class="card-desc">End-to-end forecasting with seasonal decomposition, rolling mean analysis, and outlier detection (IQR + Z-score). Engineered lag variables and seasonal indicators. Tuned Random Forest (R²=0.69) outperformed Linear Regression across all metrics.</div>
+          <div class="card-tags">
+            <span class="card-tag">Python</span><span class="card-tag">Time Series</span><span class="card-tag">Random Forest</span><span class="card-tag">GridSearchCV</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="Python / ML">
+        <div class="card-header">
+          <span class="card-emoji">🧬</span>
+          <div>
+            <div class="card-title">Breast Cancer Classification: SVM vs RF vs XGBoost</div>
+            <div class="card-module">Predictive Analytics &amp; ML using Python · Oct 2025</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat cat-Python">Python / ML</span>
+          <div class="card-stats">
+            <div class="card-stat">98% accuracy (SVM tuned)</div>
+            <div class="card-stat">569 records · 30 features</div>
+            <div class="card-stat">3 models compared</div>
+            <div class="card-stat">3D decision boundary viz</div>
+          </div>
+          <div class="card-desc">Compared SVM, Random Forest, and XGBoost on the Breast Cancer Wisconsin dataset. After GridSearchCV tuning, SVM (linear, C=0.1) achieved 98% accuracy with F1=0.97 — best overall. Built a 3D SVM decision plane visualisation for interpretability.</div>
+          <div class="card-tags">
+            <span class="card-tag">Python</span><span class="card-tag">SVM</span><span class="card-tag">XGBoost</span><span class="card-tag">scikit-learn</span><span class="card-tag">GridSearchCV</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="Big Data">
+        <div class="card-header">
+          <span class="card-emoji">🎵</span>
+          <div>
+            <div class="card-title">Spotify Big Data Pipeline (Hadoop + ML Clustering)</div>
+            <div class="card-module">Big Data Analytics · Feb 2026</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat cat-Big">Big Data</span>
+          <div class="card-stats">
+            <div class="card-stat">1M+ playlists (~1 GB)</div>
+            <div class="card-stat">3 popularity tiers</div>
+            <div class="card-stat">Silhouette analysis</div>
+            <div class="card-stat">MapReduce vs Spark</div>
+          </div>
+          <div class="card-desc">Distributed pipeline on the Spotify Million Playlist Dataset using Hadoop HDFS (128 MB blocks, replication factor 3). Custom MapReduce for track aggregation. K-Means clustering (Hits / Emerging / Long-tail) and DBSCAN anomaly detection for viral spikes.</div>
+          <div class="card-tags">
+            <span class="card-tag">Hadoop</span><span class="card-tag">HDFS</span><span class="card-tag">MapReduce</span><span class="card-tag">K-Means</span><span class="card-tag">DBSCAN</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="Deep Learning">
+        <div class="card-header">
+          <span class="card-emoji">🌿</span>
+          <div>
+            <div class="card-title">Plant Disease Detection: CNN vs MobileNetV2</div>
+            <div class="card-module">Computer Vision &amp; AI · May 2026</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat cat-Deep">Deep Learning</span>
+          <div class="card-stats">
+            <div class="card-stat">54,305 images · 38 classes</div>
+            <div class="card-stat">CNN: 68.72%</div>
+            <div class="card-stat">MobileNetV2: 94.3%</div>
+            <div class="card-stat">+25.6 pp improvement</div>
+          </div>
+          <div class="card-desc">Classified 38 plant disease categories using PlantVillage (54,305 images, 36:1 class imbalance). Custom CNN hit 68.72%; MobileNetV2 with two-stage transfer learning (freeze → fine-tune 30 base layers) reached 94.3% with >0.9 F1 across nearly all 38 classes.</div>
+          <div class="card-tags">
+            <span class="card-tag">TensorFlow</span><span class="card-tag">CNN</span><span class="card-tag">MobileNetV2</span><span class="card-tag">Transfer Learning</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="Deep Learning">
+        <div class="card-header">
+          <span class="card-emoji">🧠</span>
+          <div>
+            <div class="card-title">Brain Tumour MRI Segmentation: U-Net vs MedFusionNet</div>
+            <div class="card-module">Computer Vision &amp; AI · May 2026</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat cat-Deep">Deep Learning</span>
+          <div class="card-stats">
+            <div class="card-stat">3,929 MRI pairs</div>
+            <div class="card-stat">U-Net Dice: 0.9040</div>
+            <div class="card-stat">MedFusionNet Prec: 0.926</div>
+            <div class="card-stat">0.09% false positive rate</div>
+          </div>
+          <div class="card-desc">Compared U-Net, DeepLabV3+, and custom MedFusionNet for brain tumour segmentation (LGG MRI, 110 patients). U-Net: best Dice 0.9040 for detection. MedFusionNet: highest Precision 0.926 and 0.09% FP rate — best for surgical planning.</div>
+          <div class="card-tags">
+            <span class="card-tag">TensorFlow</span><span class="card-tag">U-Net</span><span class="card-tag">DeepLabV3+</span><span class="card-tag">Medical Imaging</span><span class="card-tag">Dice Score</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label reveal">Experience</div>
+    <div class="section-title reveal">Work History</div>
+    <div class="section-divider reveal"></div>
+    <div class="timeline">
+
+      <div class="tl-item reveal">
+        <div class="tl-dot-wrap"><div class="tl-dot blue"></div></div>
+        <div class="tl-content">
+          <div class="tl-header">
+            <div class="tl-title">Process Lead</div>
+            <div class="tl-company">Amazon Development Centre (India)</div>
+            <div class="tl-period">Jul 2022 – Jun 2023</div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Led end-to-end operational processes and technology deployments across cross-functional teams</li>
+            <li>Built Tableau dashboards and multi-level escalation metrics, improving SLA adherence</li>
+            <li>Reduced processing time by 10% through targeted quality metric optimisation</li>
+            <li>Owned weekly metrics tracking and presented findings in Weekly Business Reviews</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot-wrap"><div class="tl-dot blue"></div></div>
+        <div class="tl-content">
+          <div class="tl-header">
+            <div class="tl-title">Senior Data Associate</div>
+            <div class="tl-company">Amazon Development Centre (India)</div>
+            <div class="tl-period">Oct 2020 – Jun 2022</div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Owned Goal Success Rate for Alexa Shopping — RCA and failure metrics improved customer experience by 11%</li>
+            <li>Led migration from Excel to tool-based systems, increasing team productivity by 30%</li>
+            <li>Extracted data from SQL databases for daily/weekly metrics reporting across the full QA team</li>
+            <li>Produced weekly and monthly business review reports with full database management</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot-wrap"><div class="tl-dot blue"></div></div>
+        <div class="tl-content">
+          <div class="tl-header">
+            <div class="tl-title">Data Associate</div>
+            <div class="tl-company">Amazon Development Centre (India)</div>
+            <div class="tl-period">Jul 2018 – Sep 2020</div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Scaled the team from 6 to 130 associates — led hiring, process setup, SOPs, and stakeholder comms</li>
+            <li>Improved Alexa's NLU by analysing diverse data formats and delivering insights to the ML engineering team</li>
+            <li>Served as SME for Root Cause Analysis, leading ML-related analysis projects for Alexa devices</li>
+            <li>Delivered results across 50+ individual projects with standardised operating procedures</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot-wrap"><div class="tl-dot indigo"></div></div>
+        <div class="tl-content">
+          <div class="tl-header">
+            <div class="tl-title">Process Associate</div>
+            <div class="tl-company">IndiGo Airlines</div>
+            <div class="tl-period">Jan 2016 – Jul 2017</div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Delivered SME-led onboarding training, reducing onboarding time by 30%</li>
+            <li>Customised MS Dynamics CRM 2011 — improved system functionality and user experience</li>
+            <li>Managed data import/export workflows, achieving 25% improvement in data management efficiency</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Contact</div>
+    <div class="section-title">Let's Connect</div>
+    <div class="section-divider"></div>
+    <p class="contact-subtitle">Open to Data Analyst roles and collaborations. Feel free to reach out.</p>
+    <div class="contact-links">
+      <a href="mailto:jijo.jain4@gmail.com" class="contact-link">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        jijo.jain4@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/jijojain" target="_blank" rel="noopener" class="contact-link">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/jijojain
+      </a>
+      <a href="https://github.com/jijo-jain" target="_blank" rel="noopener" class="contact-link">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        github.com/jijo-jain
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Jijo Jain · Built with HTML &amp; CSS</p>
+</footer>
+
+<script>
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Mobile menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+  mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+function closeMobile() { mobileMenu.style.display = 'none'; }
+
+// Rotating hero titles
+const titles = ['Data Analyst','Python Developer','ML Engineer','Tableau Expert','SQL Specialist','Big Data Analyst'];
+let ti = 0;
+const rotEl = document.getElementById('rotating-title');
+setInterval(() => {
+  rotEl.style.opacity = '0';
+  setTimeout(() => {
+    ti = (ti + 1) % titles.length;
+    rotEl.textContent = titles[ti];
+    rotEl.style.opacity = '1';
+  }, 300);
+}, 2500);
+rotEl.style.transition = 'opacity 0.3s';
+
+// Project filtering
+document.getElementById('filter-row').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const cat = btn.dataset.cat;
+  document.querySelectorAll('.project-card').forEach(card => {
+    const match = cat === 'All' || card.dataset.cat === cat;
+    card.classList.toggle('hidden', !match);
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
