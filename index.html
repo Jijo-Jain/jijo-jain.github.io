@@ -4,232 +4,242 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Jijo Jain — Data Analyst Portfolio</title>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://jijo-jain.github.io/"/>
+<meta property="og:title" content="Jijo Jain — Data Analyst Portfolio"/>
+<meta property="og:description" content="MSc Data Analytics · 6 years at Amazon · Python, SQL, Tableau, ML, Deep Learning"/>
+<meta property="og:image" content="https://jijo-jain.github.io/preview.png"/>
+<meta name="description" content="MSc Data Analytics · 6 years at Amazon · Python, SQL, Tableau, Machine Learning, Deep Learning"/>
 <style>
+:root{
+  --bg:#050d1a;--bg2:#0a1628;--bg3:#0f1f3d;
+  --card:rgba(255,255,255,0.04);--card-h:rgba(255,255,255,0.07);
+  --border:rgba(255,255,255,0.08);--bh:rgba(59,130,246,0.35);
+  --blue:#2563eb;--bl:#3b82f6;--bll:#60a5fa;
+  --cyan:#06b6d4;--cyanl:#22d3ee;
+  --text:#e2e8f0;--muted:#94a3b8;--faint:#475569;
+  --r:14px;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#1e293b;background:#fff;line-height:1.6}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
-img{max-width:100%}
 
-/* ── NAV ── */
-#navbar{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,box-shadow .3s;padding:0 2rem}
-#navbar.scrolled{background:#fff;box-shadow:0 1px 8px rgba(0,0,0,.1)}
-.nav-inner{max-width:1100px;margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-weight:700;font-size:1.2rem;color:#fff;transition:color .3s}
-#navbar.scrolled .nav-logo{color:#0f2d5c}
-.nav-links{display:flex;gap:2rem}
-.nav-links a{font-size:.9rem;font-weight:500;color:rgba(255,255,255,.85);transition:color .2s}
-#navbar.scrolled .nav-links a{color:#475569}
-.nav-links a:hover{color:#60a5fa}
-#navbar.scrolled .nav-links a:hover{color:#2563eb}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-.hamburger span{display:block;width:24px;height:2px;background:#fff;transition:background .3s}
-#navbar.scrolled .hamburger span{background:#0f2d5c}
-.mobile-menu{display:none;flex-direction:column;gap:1rem;padding:1rem 2rem 1.5rem;background:#fff;border-bottom:1px solid #e2e8f0}
-.mobile-menu a{font-size:.95rem;font-weight:500;color:#334155}
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;transition:background .3s,box-shadow .3s}
+#nav.scrolled{background:rgba(5,13,26,.95);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
+.ni{max-width:1100px;margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:1.1rem;background:linear-gradient(90deg,#fff,var(--bll));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nlinks{display:flex;gap:2rem}
+.nlinks a{font-size:.88rem;font-weight:500;color:var(--muted);transition:color .2s}
+.nlinks a:hover{color:#fff}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{display:block;width:22px;height:2px;background:var(--muted);border-radius:2px}
+.mnav{display:none;flex-direction:column;gap:.75rem;padding:1rem 2rem 1.5rem;background:rgba(5,13,26,.98);border-bottom:1px solid var(--border)}
+.mnav a{font-size:.95rem;font-weight:500;color:var(--muted)}
 
-/* ── HERO ── */
-#home{min-height:100vh;background:linear-gradient(135deg,#0f1f3d 0%,#1B4F8A 60%,#2563EB 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem}
-.hero-content{max-width:700px}
-.hero-name{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:.5rem}
-.hero-tagline{font-size:clamp(1rem,2.5vw,1.35rem);color:rgba(255,255,255,.75);margin-bottom:1.5rem}
-.hero-rotating{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:600;color:#93c5fd;min-height:2rem;margin-bottom:2rem}
-.hero-pills{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:2.5rem}
-.pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#e0f2fe;padding:.35rem .9rem;border-radius:999px;font-size:.82rem;font-weight:500}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
-.btn-primary{background:#fff;color:#0f1f3d;padding:.75rem 2rem;border-radius:.5rem;font-weight:700;font-size:.95rem;transition:opacity .2s}
-.btn-primary:hover{opacity:.9}
-.btn-outline{border:2px solid rgba(255,255,255,.6);color:#fff;padding:.75rem 2rem;border-radius:.5rem;font-weight:600;font-size:.95rem;transition:all .2s}
-.btn-outline:hover{background:rgba(255,255,255,.1)}
+/* HERO */
+#home{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;overflow:hidden}
+#cvs{position:absolute;inset:0;width:100%;height:100%}
+.hc{position:relative;z-index:1;max-width:720px}
+.badge{display:inline-block;background:rgba(37,99,235,.18);border:1px solid rgba(59,130,246,.35);color:var(--bll);padding:.4rem 1.2rem;border-radius:999px;font-size:.8rem;font-weight:600;letter-spacing:.04em;margin-bottom:1.5rem}
+.hname{font-size:clamp(3rem,8vw,5.5rem);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1;margin-bottom:.75rem}
+.hname span{background:linear-gradient(135deg,var(--bll),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hrole{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:600;color:var(--muted);min-height:2.2rem;margin-bottom:1.25rem}
+.hrole em{font-style:normal;background:linear-gradient(90deg,var(--bll),var(--cyanl));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hdesc{color:var(--muted);font-size:1rem;max-width:560px;margin:0 auto 2.5rem;line-height:1.75}
+.hstats{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;margin-bottom:2.5rem}
+.hs{text-align:center}
+.hsv{font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,#fff,var(--bll));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hsl{font-size:.73rem;color:var(--muted);margin-top:.1rem;font-weight:500;letter-spacing:.03em}
+.ctas{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+.btn-p{background:var(--blue);color:#fff;padding:.8rem 2rem;border-radius:.6rem;font-weight:700;font-size:.95rem;transition:all .2s}
+.btn-p:hover{background:var(--bl);transform:translateY(-2px)}
+.btn-g{border:1.5px solid var(--bh);color:var(--bll);padding:.8rem 2rem;border-radius:.6rem;font-weight:600;font-size:.95rem;transition:all .2s;backdrop-filter:blur(8px)}
+.btn-g:hover{background:rgba(37,99,235,.12);transform:translateY(-2px)}
 
-/* ── SECTIONS ── */
-section{padding:5rem 2rem}
-.section-inner{max-width:1100px;margin:0 auto}
-.section-label{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2563eb;margin-bottom:.5rem}
-.section-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#0f2d5c;margin-bottom:.5rem}
-.section-divider{width:3rem;height:4px;background:linear-gradient(90deg,#2563eb,#60a5fa);border-radius:2px;margin-bottom:2.5rem}
+/* MARQUEE */
+.mq{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.85rem 0;overflow:hidden}
+.mqt{display:flex;gap:0;white-space:nowrap;animation:mq 24s linear infinite}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mqi{font-size:.78rem;font-weight:600;color:var(--faint);letter-spacing:.06em;text-transform:uppercase;padding:0 1.5rem}
+.mqd{color:var(--blue);padding:0 .25rem}
 
-/* ── ABOUT ── */
-#about{background:#f8fafc}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-.about-text{font-size:1rem;color:#475569;line-height:1.8}
-.about-text p+p{margin-top:1rem}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.stat-card{background:#fff;border-radius:.75rem;padding:1.25rem;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid #e2e8f0;text-align:center}
-.stat-num{font-size:1.6rem;font-weight:800;color:#2563eb}
-.stat-desc{font-size:.8rem;color:#64748b;margin-top:.2rem}
+/* SECTIONS */
+section{padding:5.5rem 2rem}
+.si{max-width:1100px;margin:0 auto}
+.ey{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--bll);margin-bottom:.5rem}
+.st{font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:800;color:#fff;margin-bottom:.5rem}
+.sb{width:3rem;height:4px;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:2px;margin-bottom:3rem}
 
-/* ── SKILLS ── */
-#skills{background:#fff}
-.skill-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
-.skill-cat{background:#f8fafc;border-radius:.75rem;padding:1.5rem;border:1px solid #e2e8f0}
-.skill-cat-title{font-weight:700;font-size:.95rem;color:#0f2d5c;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
-.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem}
-.skill-tag{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:999px;padding:.25rem .7rem;font-size:.78rem;font-weight:500}
-.skill-tag.green{background:#f0fdf4;color:#15803d;border-color:#bbf7d0}
-.skill-tag.purple{background:#faf5ff;color:#7e22ce;border-color:#e9d5ff}
-.skill-tag.orange{background:#fff7ed;color:#c2410c;border-color:#fed7aa}
+/* ABOUT */
+#about{background:var(--bg)}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.at{color:var(--muted);font-size:.97rem;line-height:1.85}
+.at p+p{margin-top:1rem}
+.ahl{color:var(--bll);font-weight:600}
+.scg{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;text-align:center;transition:all .2s}
+.sc:hover{border-color:var(--bh);background:var(--card-h)}
+.scn{font-size:1.75rem;font-weight:800;background:linear-gradient(135deg,var(--bll),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.scl{font-size:.78rem;color:var(--muted);margin-top:.3rem}
 
-/* ── PROJECTS ── */
-#projects{background:#f8fafc}
-.filter-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
-.filter-btn{padding:.4rem 1.1rem;border-radius:999px;border:1.5px solid #cbd5e1;background:#fff;color:#475569;font-size:.85rem;font-weight:500;cursor:pointer;transition:all .2s}
-.filter-btn.active,.filter-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
-.project-card{background:#fff;border-radius:1rem;border:1px solid #e2e8f0;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
-.project-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
-.project-card.hidden{display:none}
-.card-header{background:linear-gradient(135deg,#0f1f3d,#1B4F8A);padding:1.25rem;display:flex;align-items:center;gap:.75rem}
-.card-emoji{font-size:1.6rem}
-.card-title{font-weight:700;font-size:.95rem;color:#fff;line-height:1.3}
-.card-module{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.2rem}
-.card-body{padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:1rem}
-.card-cat{display:inline-block;padding:.2rem .7rem;border-radius:999px;font-size:.75rem;font-weight:600}
-.cat-Tableau{background:#dbeafe;color:#1d4ed8}
-.cat-SQL{background:#dcfce7;color:#15803d}
-.cat-Python{background:#ede9fe;color:#6d28d9}
-.cat-Big{background:#ffedd5;color:#c2410c}
-.cat-Deep{background:#ffe4e6;color:#be123c}
-.card-stats{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
-.card-stat{background:#f8fafc;border-radius:.4rem;padding:.4rem .6rem;font-size:.75rem;color:#475569;border:1px solid #f1f5f9}
-.card-desc{font-size:.82rem;color:#64748b;line-height:1.6;flex:1}
-.card-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:auto}
-.card-tag{background:#f1f5f9;color:#475569;border-radius:999px;padding:.2rem .55rem;font-size:.72rem;font-weight:500}
+/* SKILLS */
+#skills{background:var(--bg2)}
+.skl{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.bars{display:flex;flex-direction:column;gap:1.5rem}
+.br{display:flex;flex-direction:column;gap:.45rem}
+.brm{display:flex;justify-content:space-between;font-size:.84rem;font-weight:600;color:var(--text)}
+.brp{color:var(--bll)}
+.brt{height:8px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden}
+.brf{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+.brf.go{width:var(--w)}
+.tgs{display:flex;flex-direction:column;gap:1.4rem}
+.tg-ttl{font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:.55rem}
+.tgl{display:flex;flex-wrap:wrap;gap:.4rem}
+.tg{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--muted);border-radius:999px;padding:.25rem .75rem;font-size:.78rem;font-weight:500;transition:all .2s;cursor:default}
+.tg:hover{background:rgba(37,99,235,.15);border-color:var(--bh);color:#fff}
 
-/* ── EXPERIENCE ── */
-#experience{background:#fff}
-.timeline{display:flex;flex-direction:column;gap:0;position:relative}
-.timeline::before{content:'';position:absolute;left:1.25rem;top:.5rem;bottom:.5rem;width:2px;background:#e2e8f0}
-.tl-item{display:flex;gap:2rem;position:relative;padding-bottom:2rem}
-.tl-item:last-child{padding-bottom:0}
-.tl-dot-wrap{flex-shrink:0;width:2.5rem;display:flex;justify-content:center;padding-top:.25rem}
-.tl-dot{width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px #2563eb;background:#2563eb;position:relative;z-index:1}
-.tl-dot.blue{background:#2563eb;box-shadow:0 0 0 2px #2563eb}
-.tl-dot.indigo{background:#4f46e5;box-shadow:0 0 0 2px #4f46e5}
-.tl-content{flex:1}
-.tl-header{margin-bottom:.75rem}
-.tl-title{font-weight:700;font-size:1.05rem;color:#0f2d5c}
-.tl-company{font-size:.9rem;color:#2563eb;font-weight:600}
-.tl-period{font-size:.82rem;color:#94a3b8;margin-top:.15rem}
-.tl-bullets{list-style:none;display:flex;flex-direction:column;gap:.4rem}
-.tl-bullets li{font-size:.88rem;color:#475569;padding-left:1.1rem;position:relative}
-.tl-bullets li::before{content:'▸';position:absolute;left:0;color:#60a5fa}
+/* PROJECTS */
+#projects{background:var(--bg)}
+.fb{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.fbn{padding:.4rem 1.1rem;border-radius:999px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s}
+.fbn:hover,.fbn.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column}
+.pc:hover{transform:translateY(-4px);border-color:var(--bh);box-shadow:0 12px 40px rgba(37,99,235,.15)}
+.pc.hide{display:none}
+.pv{background:var(--bg3);height:110px;overflow:hidden}
+.pv svg{width:100%;height:100%;display:block}
+.pb{padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:.75rem}
+.ph{display:flex;align-items:flex-start;gap:.75rem}
+.pe{font-size:1.4rem;line-height:1;flex-shrink:0;margin-top:.1rem}
+.ptit{font-weight:700;font-size:.94rem;color:#fff;line-height:1.3}
+.pmod{font-size:.74rem;color:var(--faint);margin-top:.2rem}
+.pcat{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:.2rem .7rem}
+.cT{background:rgba(37,99,235,.2);color:var(--bll);border:1px solid rgba(59,130,246,.25)}
+.cS{background:rgba(16,185,129,.15);color:#34d399;border:1px solid rgba(16,185,129,.25)}
+.cP{background:rgba(124,58,237,.2);color:#a78bfa;border:1px solid rgba(124,58,237,.25)}
+.cB{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.25)}
+.cD{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.25)}
+.psg{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.ps{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:.4rem;padding:.35rem .6rem;font-size:.74rem;color:var(--muted)}
+.pdesc{font-size:.82rem;color:var(--muted);line-height:1.65;flex:1}
+.ptags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:auto;padding-top:.5rem}
+.ptg{background:rgba(255,255,255,.04);color:var(--faint);border-radius:999px;padding:.18rem .55rem;font-size:.72rem}
 
-/* ── CONTACT ── */
-#contact{background:linear-gradient(135deg,#0f1f3d 0%,#1B4F8A 100%);text-align:center}
-#contact .section-label{color:#93c5fd}
-#contact .section-title{color:#fff}
-#contact .section-divider{margin-left:auto;margin-right:auto;background:linear-gradient(90deg,#60a5fa,#93c5fd)}
-.contact-subtitle{color:rgba(255,255,255,.7);margin-bottom:2.5rem;font-size:1rem}
-.contact-links{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
-.contact-link{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:.75rem 1.5rem;border-radius:.5rem;font-size:.9rem;font-weight:500;transition:background .2s}
-.contact-link:hover{background:rgba(255,255,255,.2)}
-.contact-link svg{flex-shrink:0}
+/* EXPERIENCE */
+#experience{background:var(--bg2)}
+.tl{position:relative;display:flex;flex-direction:column}
+.tl::before{content:'';position:absolute;left:1.2rem;top:.3rem;bottom:.3rem;width:1.5px;background:linear-gradient(to bottom,var(--blue),rgba(37,99,235,.1))}
+.tli{display:flex;gap:2rem;padding-bottom:2.5rem;position:relative}
+.tli:last-child{padding-bottom:0}
+.tll{flex-shrink:0;width:2.5rem;display:flex;justify-content:center;padding-top:.35rem}
+.tld{width:14px;height:14px;border-radius:50%;background:var(--blue);border:2px solid var(--bg2);box-shadow:0 0 0 2px var(--blue);z-index:1}
+.tlb{}
+.tlp{font-size:.74rem;font-weight:700;color:var(--bll);letter-spacing:.04em;margin-bottom:.3rem}
+.tlt{font-weight:800;font-size:1.05rem;color:#fff;margin-bottom:.2rem}
+.tlc{font-size:.88rem;color:var(--muted);font-weight:500;margin-bottom:.75rem}
+.tlul{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.tlul li{font-size:.87rem;color:var(--muted);padding-left:1.1rem;position:relative}
+.tlul li::before{content:'▸';position:absolute;left:0;color:var(--bll)}
 
-/* ── FOOTER ── */
-footer{background:#0a1628;color:rgba(255,255,255,.45);text-align:center;padding:1.5rem;font-size:.82rem}
+/* CONTACT */
+#contact{background:var(--bg);text-align:center}
+.csub{color:var(--muted);margin-bottom:2.5rem;font-size:1rem}
+.cls{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+.cl{display:flex;align-items:center;gap:.6rem;background:var(--card);border:1px solid var(--border);color:var(--text);padding:.8rem 1.6rem;border-radius:.6rem;font-size:.9rem;font-weight:500;transition:all .2s}
+.cl:hover{border-color:var(--bh);background:rgba(37,99,235,.1);color:#fff;transform:translateY(-2px)}
+.cl svg{color:var(--bll);flex-shrink:0}
 
-/* ── RESPONSIVE ── */
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:1.5rem;text-align:center;font-size:.8rem;color:var(--faint)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.on{opacity:1;transform:none}
+
+/* RESPONSIVE */
 @media(max-width:768px){
-  .nav-links{display:none}
-  .hamburger{display:flex}
-  .about-grid{grid-template-columns:1fr}
-  .stat-grid{grid-template-columns:1fr 1fr}
-  .timeline::before{left:.75rem}
+  .nlinks{display:none}
+  .burger{display:flex}
+  .ag,.skl{grid-template-columns:1fr}
 }
 @media(max-width:480px){
-  .projects-grid{grid-template-columns:1fr}
+  .pg{grid-template-columns:1fr}
+  .hstats{gap:1.25rem}
 }
-
-/* ── FADE-IN ON SCROLL ── */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
-.reveal.visible{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav id="navbar">
-  <div class="nav-inner">
-    <a href="#home" class="nav-logo">Jijo Jain</a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
+<nav id="nav">
+  <div class="ni">
+    <a href="#home" class="logo">Jijo Jain</a>
+    <div class="nlinks">
+      <a href="#about">About</a><a href="#skills">Skills</a>
+      <a href="#projects">Projects</a><a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </div>
-    <div class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
   </div>
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="#about" onclick="closeMobile()">About</a>
-    <a href="#skills" onclick="closeMobile()">Skills</a>
-    <a href="#projects" onclick="closeMobile()">Projects</a>
-    <a href="#experience" onclick="closeMobile()">Experience</a>
-    <a href="#contact" onclick="closeMobile()">Contact</a>
+  <div class="mnav" id="mnav">
+    <a href="#about" onclick="cm()">About</a><a href="#skills" onclick="cm()">Skills</a>
+    <a href="#projects" onclick="cm()">Projects</a><a href="#experience" onclick="cm()">Experience</a>
+    <a href="#contact" onclick="cm()">Contact</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="home">
-  <div class="hero-content">
-    <div class="hero-name">Jijo Jain</div>
-    <div class="hero-tagline">MSc Data Analytics · 6 Years Amazon Experience</div>
-    <div class="hero-rotating" id="rotating-title">Data Analyst</div>
-    <div class="hero-pills">
-      <span class="pill">Python</span>
-      <span class="pill">SQL</span>
-      <span class="pill">Tableau</span>
-      <span class="pill">Machine Learning</span>
-      <span class="pill">Deep Learning</span>
-      <span class="pill">Big Data</span>
+  <canvas id="cvs"></canvas>
+  <div class="hc">
+    <div class="badge">Open to Data Analyst Roles</div>
+    <h1 class="hname">Jijo <span>Jain</span></h1>
+    <div class="hrole"><em id="role">Data Analyst</em></div>
+    <p class="hdesc">MSc Data Analytics graduate with 6 years at Amazon, building end-to-end data solutions — from SQL pipelines and Tableau dashboards to machine learning models and deep learning on real-world data.</p>
+    <div class="hstats">
+      <div class="hs"><div class="hsv"><span class="cnt" data-t="6">0</span>+</div><div class="hsl">Years at Amazon</div></div>
+      <div class="hs"><div class="hsv"><span class="cnt" data-t="8">0</span></div><div class="hsl">MSc Projects</div></div>
+      <div class="hs"><div class="hsv"><span class="cnt" data-t="98">0</span>%</div><div class="hsl">Best ML Accuracy</div></div>
+      <div class="hs"><div class="hsv"><span class="cnt" data-t="100">0</span>K+</div><div class="hsl">Records Analysed</div></div>
     </div>
-    <div class="hero-ctas">
-      <a href="#projects" class="btn-primary">View Projects</a>
-      <a href="#contact" class="btn-outline">Get in Touch</a>
+    <div class="ctas">
+      <a href="#projects" class="btn-p">View Projects</a>
+      <a href="#contact" class="btn-g">Get in Touch</a>
     </div>
   </div>
 </section>
 
+<!-- TECH MARQUEE -->
+<div class="mq">
+  <div class="mqt">
+    <span class="mqi">Python</span><span class="mqd">·</span><span class="mqi">SQL</span><span class="mqd">·</span><span class="mqi">Tableau</span><span class="mqd">·</span><span class="mqi">TensorFlow</span><span class="mqd">·</span><span class="mqi">Hadoop</span><span class="mqd">·</span><span class="mqi">scikit-learn</span><span class="mqd">·</span><span class="mqi">MySQL</span><span class="mqd">·</span><span class="mqi">Pandas</span><span class="mqd">·</span><span class="mqi">XGBoost</span><span class="mqd">·</span><span class="mqi">TabPy</span><span class="mqd">·</span><span class="mqi">HDFS</span><span class="mqd">·</span><span class="mqi">CNN</span><span class="mqd">·</span><span class="mqi">MapReduce</span><span class="mqd">·</span><span class="mqi">U-Net</span><span class="mqd">·</span>
+    <span class="mqi">Python</span><span class="mqd">·</span><span class="mqi">SQL</span><span class="mqd">·</span><span class="mqi">Tableau</span><span class="mqd">·</span><span class="mqi">TensorFlow</span><span class="mqd">·</span><span class="mqi">Hadoop</span><span class="mqd">·</span><span class="mqi">scikit-learn</span><span class="mqd">·</span><span class="mqi">MySQL</span><span class="mqd">·</span><span class="mqi">Pandas</span><span class="mqd">·</span><span class="mqi">XGBoost</span><span class="mqd">·</span><span class="mqi">TabPy</span><span class="mqd">·</span><span class="mqi">HDFS</span><span class="mqd">·</span><span class="mqi">CNN</span><span class="mqd">·</span><span class="mqi">MapReduce</span><span class="mqd">·</span><span class="mqi">U-Net</span><span class="mqd">·</span>
+  </div>
+</div>
+
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-inner">
-    <div class="section-label reveal">About Me</div>
-    <div class="section-title reveal">Turning Data into Decisions</div>
-    <div class="section-divider reveal"></div>
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>I'm a Data Analyst with 6 years at Amazon Development Centre (India) and a current MSc in Data Analytics. I specialise in building end-to-end analytics solutions — from SQL database design and Python ML pipelines to Tableau dashboards and deep learning models.</p>
-        <p>At Amazon, I owned Goal Success Rate for Alexa Shopping, led a team scale from 6 to 130 associates, and drove an 11% improvement in customer experience through rigorous data analysis and root cause investigation.</p>
-        <p>My MSc projects span the full data science stack: Tableau storytelling on real government datasets, distributed big data pipelines in Hadoop, and computer vision models achieving 94%+ accuracy on medical imaging tasks.</p>
+  <div class="si">
+    <div class="ey rv">About Me</div>
+    <div class="st rv">Turning Raw Data into Real Impact</div>
+    <div class="sb rv"></div>
+    <div class="ag">
+      <div class="at rv">
+        <p>I'm a Data Analyst currently completing my <span class="ahl">MSc in Data Analytics</span>, with six years of hands-on experience at Amazon Development Centre (India). I've built analytics solutions at every layer — SQL database design, Python ML pipelines, Tableau dashboards, and deep learning models.</p>
+        <p>At Amazon, I owned <span class="ahl">Goal Success Rate for Alexa Shopping</span>, drove an 11% improvement in customer experience through root-cause analysis, and scaled a team from 6 to 130 associates. I'm equally at home presenting to senior stakeholders in Business Reviews and diving deep into model error analysis.</p>
+        <p>My MSc projects span the full stack: visualising 100,000+ collision records in Tableau, distributed big data pipelines in Hadoop, and computer vision models achieving <span class="ahl">94%+ accuracy</span> on medical imaging tasks.</p>
       </div>
-      <div class="stat-grid reveal">
-        <div class="stat-card">
-          <div class="stat-num">6+</div>
-          <div class="stat-desc">Years at Amazon</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">8</div>
-          <div class="stat-desc">MSc Projects</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">98%</div>
-          <div class="stat-desc">SVM Accuracy (Cancer)</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">94%</div>
-          <div class="stat-desc">Transfer Learning Accuracy</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">11%</div>
-          <div class="stat-desc">CX Improvement at Amazon</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">1M+</div>
-          <div class="stat-desc">Spotify Playlists Processed</div>
-        </div>
+      <div class="scg rv">
+        <div class="sc"><div class="scn">6+</div><div class="scl">Years at Amazon</div></div>
+        <div class="sc"><div class="scn">8</div><div class="scl">MSc Projects</div></div>
+        <div class="sc"><div class="scn">98%</div><div class="scl">Best ML Accuracy</div></div>
+        <div class="sc"><div class="scn">0.904</div><div class="scl">Best Dice Score (DL)</div></div>
+        <div class="sc"><div class="scn">11%</div><div class="scl">CX Improvement (Amazon)</div></div>
+        <div class="sc"><div class="scn">1M+</div><div class="scl">Spotify Playlists Processed</div></div>
       </div>
     </div>
   </div>
@@ -237,63 +247,26 @@ footer{background:#0a1628;color:rgba(255,255,255,.45);text-align:center;padding:
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-inner">
-    <div class="section-label reveal">Skills</div>
-    <div class="section-title reveal">Technical Toolkit</div>
-    <div class="section-divider reveal"></div>
-    <div class="skill-cats reveal">
-      <div class="skill-cat">
-        <div class="skill-cat-title">📊 Data &amp; Analytics</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Tableau</span>
-          <span class="skill-tag">TabPy</span>
-          <span class="skill-tag">Tableau Prep Builder</span>
-          <span class="skill-tag">EDA</span>
-          <span class="skill-tag">Data Visualisation</span>
-          <span class="skill-tag">Dashboard Design</span>
-          <span class="skill-tag">Statistical Analysis</span>
-          <span class="skill-tag">Time Series</span>
-        </div>
+  <div class="si">
+    <div class="ey rv">Skills</div>
+    <div class="st rv">Technical Toolkit</div>
+    <div class="sb rv"></div>
+    <div class="skl">
+      <div class="bars rv" id="skill-bars">
+        <div class="br"><div class="brm"><span>Tableau &amp; Data Visualisation</span><span class="brp">90%</span></div><div class="brt"><div class="brf" style="--w:90%"></div></div></div>
+        <div class="br"><div class="brm"><span>SQL &amp; Database Design</span><span class="brp">85%</span></div><div class="brt"><div class="brf" style="--w:85%"></div></div></div>
+        <div class="br"><div class="brm"><span>Python &amp; Data Science Libraries</span><span class="brp">82%</span></div><div class="brt"><div class="brf" style="--w:82%"></div></div></div>
+        <div class="br"><div class="brm"><span>Statistical Analysis &amp; EDA</span><span class="brp">80%</span></div><div class="brt"><div class="brf" style="--w:80%"></div></div></div>
+        <div class="br"><div class="brm"><span>Machine Learning (scikit-learn)</span><span class="brp">76%</span></div><div class="brt"><div class="brf" style="--w:76%"></div></div></div>
+        <div class="br"><div class="brm"><span>Deep Learning (TensorFlow / Keras)</span><span class="brp">70%</span></div><div class="brt"><div class="brf" style="--w:70%"></div></div></div>
+        <div class="br"><div class="brm"><span>Big Data (Hadoop / MapReduce)</span><span class="brp">65%</span></div><div class="brt"><div class="brf" style="--w:65%"></div></div></div>
       </div>
-      <div class="skill-cat">
-        <div class="skill-cat-title">🐍 Python &amp; Libraries</div>
-        <div class="skill-tags">
-          <span class="skill-tag purple">Python</span>
-          <span class="skill-tag purple">pandas</span>
-          <span class="skill-tag purple">NumPy</span>
-          <span class="skill-tag purple">matplotlib</span>
-          <span class="skill-tag purple">seaborn</span>
-          <span class="skill-tag purple">scikit-learn</span>
-          <span class="skill-tag purple">TensorFlow</span>
-          <span class="skill-tag purple">Keras</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <div class="skill-cat-title">🗄️ Databases &amp; Big Data</div>
-        <div class="skill-tags">
-          <span class="skill-tag green">SQL (MySQL)</span>
-          <span class="skill-tag green">Database Design</span>
-          <span class="skill-tag green">3NF Normalisation</span>
-          <span class="skill-tag green">Window Functions</span>
-          <span class="skill-tag green">Apache Hadoop</span>
-          <span class="skill-tag green">HDFS</span>
-          <span class="skill-tag green">MapReduce</span>
-          <span class="skill-tag green">ETL Pipelines</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <div class="skill-cat-title">🤖 ML &amp; AI</div>
-        <div class="skill-tags">
-          <span class="skill-tag orange">SVM</span>
-          <span class="skill-tag orange">Random Forest</span>
-          <span class="skill-tag orange">XGBoost</span>
-          <span class="skill-tag orange">K-Means</span>
-          <span class="skill-tag orange">DBSCAN</span>
-          <span class="skill-tag orange">CNN</span>
-          <span class="skill-tag orange">MobileNetV2</span>
-          <span class="skill-tag orange">U-Net</span>
-          <span class="skill-tag orange">Transfer Learning</span>
-        </div>
+      <div class="tgs rv">
+        <div><div class="tg-ttl">Visualisation</div><div class="tgl"><span class="tg">Tableau</span><span class="tg">TabPy</span><span class="tg">Tableau Prep</span><span class="tg">Dashboard Design</span><span class="tg">Data Storytelling</span></div></div>
+        <div><div class="tg-ttl">Python Libraries</div><div class="tgl"><span class="tg">pandas</span><span class="tg">NumPy</span><span class="tg">matplotlib</span><span class="tg">seaborn</span><span class="tg">scikit-learn</span><span class="tg">TensorFlow</span><span class="tg">Keras</span></div></div>
+        <div><div class="tg-ttl">Databases</div><div class="tgl"><span class="tg">MySQL</span><span class="tg">3NF Normalisation</span><span class="tg">Window Functions</span><span class="tg">Stored Procedures</span><span class="tg">Query Optimisation</span></div></div>
+        <div><div class="tg-ttl">ML / AI Models</div><div class="tgl"><span class="tg">SVM</span><span class="tg">Random Forest</span><span class="tg">XGBoost</span><span class="tg">K-Means</span><span class="tg">DBSCAN</span><span class="tg">CNN</span><span class="tg">MobileNetV2</span><span class="tg">U-Net</span></div></div>
+        <div><div class="tg-ttl">Big Data</div><div class="tgl"><span class="tg">Apache Hadoop</span><span class="tg">HDFS</span><span class="tg">MapReduce</span><span class="tg">ETL Pipelines</span></div></div>
       </div>
     </div>
   </div>
@@ -301,201 +274,232 @@ footer{background:#0a1628;color:rgba(255,255,255,.45);text-align:center;padding:
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-inner">
-    <div class="section-label reveal">Projects</div>
-    <div class="section-title reveal">MSc Data Analytics Work</div>
-    <div class="section-divider reveal"></div>
-    <div class="filter-row reveal" id="filter-row">
-      <button class="filter-btn active" data-cat="All">All</button>
-      <button class="filter-btn" data-cat="Tableau">Tableau</button>
-      <button class="filter-btn" data-cat="SQL">SQL</button>
-      <button class="filter-btn" data-cat="Python / ML">Python / ML</button>
-      <button class="filter-btn" data-cat="Big Data">Big Data</button>
-      <button class="filter-btn" data-cat="Deep Learning">Deep Learning</button>
+  <div class="si">
+    <div class="ey rv">Projects</div>
+    <div class="st rv">MSc Data Analytics Work</div>
+    <div class="sb rv"></div>
+    <div class="fb rv">
+      <button class="fbn on" data-f="All">All</button>
+      <button class="fbn" data-f="Tableau">Tableau</button>
+      <button class="fbn" data-f="SQL">SQL</button>
+      <button class="fbn" data-f="Python / ML">Python / ML</button>
+      <button class="fbn" data-f="Big Data">Big Data</button>
+      <button class="fbn" data-f="Deep Learning">Deep Learning</button>
     </div>
-    <div class="projects-grid" id="projects-grid">
+    <div class="pg">
 
-      <div class="project-card reveal" data-cat="Tableau">
-        <div class="card-header">
-          <span class="card-emoji">🚦</span>
-          <div>
-            <div class="card-title">UK Road Safety Analytics Dashboard</div>
-            <div class="card-module">Visualisation &amp; Storytelling using Tableau · May 2026</div>
-          </div>
+      <!-- 1. Road Safety -->
+      <div class="pc rv" data-cat="Tableau">
+        <div class="pv">
+          <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <rect x="10" y="62" width="22" height="38" fill="#3b82f6" rx="3" opacity=".7"/>
+            <rect x="40" y="40" width="22" height="60" fill="#2563eb" rx="3"/>
+            <rect x="70" y="50" width="22" height="50" fill="#3b82f6" rx="3" opacity=".85"/>
+            <rect x="100" y="22" width="22" height="78" fill="#1d4ed8" rx="3"/>
+            <rect x="130" y="34" width="22" height="66" fill="#2563eb" rx="3"/>
+            <rect x="160" y="46" width="22" height="54" fill="#3b82f6" rx="3" opacity=".8"/>
+            <rect x="190" y="58" width="22" height="42" fill="#60a5fa" rx="3" opacity=".65"/>
+            <polyline points="21,62 51,40 81,50 111,22 141,34 171,46 201,58" fill="none" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="4,2" opacity=".6"/>
+            <line x1="5" y1="101" x2="218" y2="101" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          </svg>
         </div>
-        <div class="card-body">
-          <span class="card-cat cat-Tableau">Tableau</span>
-          <div class="card-stats">
-            <div class="card-stat">100,927 collisions</div>
-            <div class="card-stat">1,502 fatalities</div>
-            <div class="card-stat">9 visualisations</div>
-            <div class="card-stat">3 dashboards + Story</div>
-          </div>
-          <div class="card-desc">Multi-dashboard analytics on the UK STATS19 2024 dataset. Cleaned 100,927 collision records, integrated TabPy (Python in Tableau) for ML risk scores and anomaly detection, delivered 9 visualisations across 3 dashboards and an 8-part Story.</div>
-          <div class="card-tags">
-            <span class="card-tag">Tableau</span><span class="card-tag">TabPy</span><span class="card-tag">Python</span><span class="card-tag">LOD</span><span class="card-tag">Dashboard</span>
-          </div>
+        <div class="pb">
+          <div class="ph"><span class="pe">🚦</span><div><div class="ptit">UK Road Safety Analytics Dashboard</div><div class="pmod">Visualisation &amp; Storytelling · May 2026</div></div></div>
+          <span class="pcat cT">Tableau</span>
+          <div class="psg"><div class="ps">100,927 collisions</div><div class="ps">1,502 fatalities</div><div class="ps">9 visualisations</div><div class="ps">3 dashboards</div></div>
+          <div class="pdesc">Multi-dashboard analytics on UK STATS19 2024 data. Integrated TabPy (Python in Tableau) for ML risk scores, anomaly detection, and driver risk index across 3 dashboards and an 8-part Tableau Story.</div>
+          <div class="ptags"><span class="ptg">Tableau</span><span class="ptg">TabPy</span><span class="ptg">LOD</span><span class="ptg">Dashboard</span></div>
         </div>
       </div>
 
-      <div class="project-card reveal" data-cat="Tableau">
-        <div class="card-header">
-          <span class="card-emoji">🌍</span>
-          <div>
-            <div class="card-title">Global Health Visual Analytics (WHO Life Expectancy)</div>
-            <div class="card-module">Visualisation &amp; Storytelling using Tableau · May 2026</div>
-          </div>
+      <!-- 2. WHO Life Expectancy -->
+      <div class="pc rv" data-cat="Tableau">
+        <div class="pv">
+          <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g-who" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2563eb" stop-opacity="0.35"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0.02"/></linearGradient></defs>
+            <polygon points="10,85 40,68 70,72 100,52 130,55 160,36 190,26 215,20 215,101 10,101" fill="url(#g-who)"/>
+            <polyline points="10,85 40,68 70,72 100,52 130,55 160,36 190,26 215,20" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linejoin="round"/>
+            <circle cx="10" cy="85" r="4" fill="#2563eb"/>
+            <circle cx="100" cy="52" r="4" fill="#3b82f6"/>
+            <circle cx="190" cy="26" r="4" fill="#60a5fa"/>
+            <circle cx="215" cy="20" r="4" fill="#93c5fd"/>
+            <line x1="5" y1="101" x2="218" y2="101" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <line x1="5" y1="8" x2="5" y2="101" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <text x="12" y="18" fill="#60a5fa" font-size="8" font-family="sans-serif">Life Expectancy Trend (193 countries)</text>
+          </svg>
         </div>
-        <div class="card-body">
-          <span class="card-cat cat-Tableau">Tableau</span>
-          <div class="card-stats">
-            <div class="card-stat">193 countries</div>
-            <div class="card-stat">2000–2015 (16 yrs)</div>
-            <div class="card-stat">7 visualisations</div>
-            <div class="card-stat">3 dashboards + Story</div>
-          </div>
-          <div class="card-desc">Cleaned WHO Life Expectancy dataset (2,938 rows, 2,500+ missing entries) with Tableau Prep Builder. Built choropleth maps, dual-axis HIV/AIDS charts, and immunisation matrices revealing GDP–life expectancy correlations across developed vs developing nations.</div>
-          <div class="card-tags">
-            <span class="card-tag">Tableau</span><span class="card-tag">Tableau Prep</span><span class="card-tag">WHO Data</span><span class="card-tag">Dashboard</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal" data-cat="SQL">
-        <div class="card-header">
-          <span class="card-emoji">🏥</span>
-          <div>
-            <div class="card-title">Cardiology Clinic Relational Database (MySQL)</div>
-            <div class="card-module">Enterprise Data Warehouses &amp; Database Management · Jan 2026</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="card-cat cat-SQL">SQL</span>
-          <div class="card-stats">
-            <div class="card-stat">14 entities</div>
-            <div class="card-stat">4 M:N relationships</div>
-            <div class="card-stat">5 advanced queries</div>
-            <div class="card-stat">RANK() + EXPLAIN</div>
-          </div>
-          <div class="card-desc">Designed and implemented a fully normalised cardiology clinic database (cardiology_clinic_db) in MySQL. 14 entities covering patient records, clinical visits, diagnoses, procedures, and billing. Built stored procedures, window functions, and query optimisation with EXPLAIN.</div>
-          <div class="card-tags">
-            <span class="card-tag">MySQL</span><span class="card-tag">ERD</span><span class="card-tag">3NF</span><span class="card-tag">Window Functions</span><span class="card-tag">Stored Procedures</span>
-          </div>
+        <div class="pb">
+          <div class="ph"><span class="pe">🌍</span><div><div class="ptit">Global Health Visual Analytics (WHO Life Expectancy)</div><div class="pmod">Visualisation &amp; Storytelling · May 2026</div></div></div>
+          <span class="pcat cT">Tableau</span>
+          <div class="psg"><div class="ps">193 countries</div><div class="ps">2000–2015</div><div class="ps">7 visualisations</div><div class="ps">3 dashboards</div></div>
+          <div class="pdesc">Cleaned WHO dataset (2,938 rows, 2,500+ missing entries) with Tableau Prep. Choropleth maps, dual-axis HIV/AIDS charts, and immunisation matrices revealing GDP–life expectancy correlations.</div>
+          <div class="ptags"><span class="ptg">Tableau</span><span class="ptg">Tableau Prep</span><span class="ptg">WHO Data</span></div>
         </div>
       </div>
 
-      <div class="project-card reveal" data-cat="Python / ML">
-        <div class="card-header">
-          <span class="card-emoji">📈</span>
-          <div>
-            <div class="card-title">Time Series Temperature Forecasting (1981–1990)</div>
-            <div class="card-module">Fundamentals of Data Analytics · Sep 2025</div>
-          </div>
+      <!-- 3. Cardiology DB -->
+      <div class="pc rv" data-cat="SQL">
+        <div class="pv">
+          <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+            <rect x="80" y="35" width="60" height="38" rx="5" fill="#1e3a6e" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="110" y="58" fill="white" text-anchor="middle" font-size="10" font-family="monospace" font-weight="bold">Patient</text>
+            <rect x="4" y="12" width="52" height="24" rx="3" fill="rgba(37,99,235,0.3)" stroke="#60a5fa" stroke-width="1"/>
+            <text x="30" y="28" fill="#93c5fd" text-anchor="middle" font-size="8.5" font-family="monospace">Visit</text>
+            <rect x="164" y="12" width="52" height="24" rx="3" fill="rgba(37,99,235,0.3)" stroke="#60a5fa" stroke-width="1"/>
+            <text x="190" y="28" fill="#93c5fd" text-anchor="middle" font-size="8.5" font-family="monospace">Diagnosis</text>
+            <rect x="4" y="74" width="52" height="24" rx="3" fill="rgba(37,99,235,0.3)" stroke="#60a5fa" stroke-width="1"/>
+            <text x="30" y="90" fill="#93c5fd" text-anchor="middle" font-size="8.5" font-family="monospace">Insurance</text>
+            <rect x="164" y="74" width="52" height="24" rx="3" fill="rgba(37,99,235,0.3)" stroke="#60a5fa" stroke-width="1"/>
+            <text x="190" y="90" fill="#93c5fd" text-anchor="middle" font-size="8.5" font-family="monospace">Billing</text>
+            <line x1="80" y1="50" x2="56" y2="24" stroke="#60a5fa" stroke-width="1" opacity=".5"/>
+            <line x1="140" y1="50" x2="164" y2="24" stroke="#60a5fa" stroke-width="1" opacity=".5"/>
+            <line x1="80" y1="60" x2="56" y2="86" stroke="#60a5fa" stroke-width="1" opacity=".5"/>
+            <line x1="140" y1="60" x2="164" y2="86" stroke="#60a5fa" stroke-width="1" opacity=".5"/>
+            <text x="84" y="108" fill="#475569" font-size="7.5" font-family="monospace">14 entities · 3NF · ERD</text>
+          </svg>
         </div>
-        <div class="card-body">
-          <span class="card-cat cat-Python">Python / ML</span>
-          <div class="card-stats">
-            <div class="card-stat">Daily temps 1981–1990</div>
-            <div class="card-stat">RF: R² = 0.69</div>
-            <div class="card-stat">LR: R² = 0.68</div>
-            <div class="card-stat">4 recommendations</div>
-          </div>
-          <div class="card-desc">End-to-end forecasting with seasonal decomposition, rolling mean analysis, and outlier detection (IQR + Z-score). Engineered lag variables and seasonal indicators. Tuned Random Forest (R²=0.69) outperformed Linear Regression across all metrics.</div>
-          <div class="card-tags">
-            <span class="card-tag">Python</span><span class="card-tag">Time Series</span><span class="card-tag">Random Forest</span><span class="card-tag">GridSearchCV</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal" data-cat="Python / ML">
-        <div class="card-header">
-          <span class="card-emoji">🧬</span>
-          <div>
-            <div class="card-title">Breast Cancer Classification: SVM vs RF vs XGBoost</div>
-            <div class="card-module">Predictive Analytics &amp; ML using Python · Oct 2025</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="card-cat cat-Python">Python / ML</span>
-          <div class="card-stats">
-            <div class="card-stat">98% accuracy (SVM tuned)</div>
-            <div class="card-stat">569 records · 30 features</div>
-            <div class="card-stat">3 models compared</div>
-            <div class="card-stat">3D decision boundary viz</div>
-          </div>
-          <div class="card-desc">Compared SVM, Random Forest, and XGBoost on the Breast Cancer Wisconsin dataset. After GridSearchCV tuning, SVM (linear, C=0.1) achieved 98% accuracy with F1=0.97 — best overall. Built a 3D SVM decision plane visualisation for interpretability.</div>
-          <div class="card-tags">
-            <span class="card-tag">Python</span><span class="card-tag">SVM</span><span class="card-tag">XGBoost</span><span class="card-tag">scikit-learn</span><span class="card-tag">GridSearchCV</span>
-          </div>
+        <div class="pb">
+          <div class="ph"><span class="pe">🏥</span><div><div class="ptit">Cardiology Clinic Relational Database (MySQL)</div><div class="pmod">Enterprise Data Warehouses · Jan 2026</div></div></div>
+          <span class="pcat cS">SQL</span>
+          <div class="psg"><div class="ps">14 entities</div><div class="ps">4 M:N relationships</div><div class="ps">5 advanced queries</div><div class="ps">RANK() + EXPLAIN</div></div>
+          <div class="pdesc">Fully normalised cardiology clinic database (3NF) in MySQL. ERD, window functions, correlated subqueries, stored procedures, and query optimisation using EXPLAIN.</div>
+          <div class="ptags"><span class="ptg">MySQL</span><span class="ptg">3NF</span><span class="ptg">ERD</span><span class="ptg">Window Functions</span></div>
         </div>
       </div>
 
-      <div class="project-card reveal" data-cat="Big Data">
-        <div class="card-header">
-          <span class="card-emoji">🎵</span>
-          <div>
-            <div class="card-title">Spotify Big Data Pipeline (Hadoop + ML Clustering)</div>
-            <div class="card-module">Big Data Analytics · Feb 2026</div>
-          </div>
+      <!-- 4. Time Series -->
+      <div class="pc rv" data-cat="Python / ML">
+        <div class="pv">
+          <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g-ts" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7c3aed" stop-opacity="0.3"/><stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/></linearGradient></defs>
+            <polygon points="10,80 30,58 50,65 70,38 90,68 110,44 130,65 150,35 170,62 190,38 210,58 210,101 10,101" fill="url(#g-ts)"/>
+            <polyline points="10,80 30,58 50,65 70,38 90,68 110,44 130,65 150,35 170,62 190,38 210,58" fill="none" stroke="#8b5cf6" stroke-width="2.2" stroke-linejoin="round"/>
+            <polyline points="195,40 205,32 218,24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-dasharray="3,3"/>
+            <text x="158" y="19" fill="#a78bfa" font-size="8" font-family="sans-serif">forecast →</text>
+            <line x1="5" y1="101" x2="218" y2="101" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <line x1="5" y1="8" x2="5" y2="101" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <text x="12" y="18" fill="#8b5cf6" font-size="8" font-family="sans-serif">Min Temperature · 1981–1990</text>
+          </svg>
         </div>
-        <div class="card-body">
-          <span class="card-cat cat-Big">Big Data</span>
-          <div class="card-stats">
-            <div class="card-stat">1M+ playlists (~1 GB)</div>
-            <div class="card-stat">3 popularity tiers</div>
-            <div class="card-stat">Silhouette analysis</div>
-            <div class="card-stat">MapReduce vs Spark</div>
-          </div>
-          <div class="card-desc">Distributed pipeline on the Spotify Million Playlist Dataset using Hadoop HDFS (128 MB blocks, replication factor 3). Custom MapReduce for track aggregation. K-Means clustering (Hits / Emerging / Long-tail) and DBSCAN anomaly detection for viral spikes.</div>
-          <div class="card-tags">
-            <span class="card-tag">Hadoop</span><span class="card-tag">HDFS</span><span class="card-tag">MapReduce</span><span class="card-tag">K-Means</span><span class="card-tag">DBSCAN</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal" data-cat="Deep Learning">
-        <div class="card-header">
-          <span class="card-emoji">🌿</span>
-          <div>
-            <div class="card-title">Plant Disease Detection: CNN vs MobileNetV2</div>
-            <div class="card-module">Computer Vision &amp; AI · May 2026</div>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="card-cat cat-Deep">Deep Learning</span>
-          <div class="card-stats">
-            <div class="card-stat">54,305 images · 38 classes</div>
-            <div class="card-stat">CNN: 68.72%</div>
-            <div class="card-stat">MobileNetV2: 94.3%</div>
-            <div class="card-stat">+25.6 pp improvement</div>
-          </div>
-          <div class="card-desc">Classified 38 plant disease categories using PlantVillage (54,305 images, 36:1 class imbalance). Custom CNN hit 68.72%; MobileNetV2 with two-stage transfer learning (freeze → fine-tune 30 base layers) reached 94.3% with >0.9 F1 across nearly all 38 classes.</div>
-          <div class="card-tags">
-            <span class="card-tag">TensorFlow</span><span class="card-tag">CNN</span><span class="card-tag">MobileNetV2</span><span class="card-tag">Transfer Learning</span>
-          </div>
+        <div class="pb">
+          <div class="ph"><span class="pe">📈</span><div><div class="ptit">Time Series Temperature Forecasting (1981–1990)</div><div class="pmod">Fundamentals of Data Analytics · Sep 2025</div></div></div>
+          <span class="pcat cP">Python / ML</span>
+          <div class="psg"><div class="ps">Daily temps 1981–90</div><div class="ps">RF: R² = 0.69</div><div class="ps">LR: R² = 0.68</div><div class="ps">4 recommendations</div></div>
+          <div class="pdesc">Seasonal decomposition, rolling mean analysis, IQR + Z-score outlier detection. Engineered lag variables and seasonal indicators. Tuned Random Forest outperformed Linear Regression across all metrics.</div>
+          <div class="ptags"><span class="ptg">Python</span><span class="ptg">Time Series</span><span class="ptg">Random Forest</span><span class="ptg">GridSearchCV</span></div>
         </div>
       </div>
 
-      <div class="project-card reveal" data-cat="Deep Learning">
-        <div class="card-header">
-          <span class="card-emoji">🧠</span>
-          <div>
-            <div class="card-title">Brain Tumour MRI Segmentation: U-Net vs MedFusionNet</div>
-            <div class="card-module">Computer Vision &amp; AI · May 2026</div>
-          </div>
+      <!-- 5. Breast Cancer -->
+      <div class="pc rv" data-cat="Python / ML">
+        <div class="pv">
+          <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="162" cy="22" r="5.5" fill="#10b981" opacity=".85"/>
+            <circle cx="180" cy="33" r="5" fill="#10b981" opacity=".8"/>
+            <circle cx="156" cy="38" r="4.5" fill="#10b981" opacity=".75"/>
+            <circle cx="174" cy="16" r="4.5" fill="#10b981" opacity=".9"/>
+            <circle cx="190" cy="26" r="5.5" fill="#10b981" opacity=".7"/>
+            <circle cx="167" cy="46" r="4" fill="#10b981" opacity=".6"/>
+            <circle cx="194" cy="42" r="4.5" fill="#10b981" opacity=".65"/>
+            <circle cx="145" cy="30" r="4" fill="#10b981" opacity=".6"/>
+            <circle cx="38" cy="78" r="5.5" fill="#ef4444" opacity=".85"/>
+            <circle cx="56" cy="88" r="5" fill="#ef4444" opacity=".8"/>
+            <circle cx="44" cy="66" r="4.5" fill="#ef4444" opacity=".75"/>
+            <circle cx="28" cy="84" r="5" fill="#ef4444" opacity=".7"/>
+            <circle cx="64" cy="72" r="5.5" fill="#ef4444" opacity=".8"/>
+            <circle cx="32" cy="70" r="4" fill="#ef4444" opacity=".65"/>
+            <circle cx="50" cy="95" r="4.5" fill="#ef4444" opacity=".6"/>
+            <line x1="5" y1="105" x2="215" y2="10" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,3" opacity=".4"/>
+            <text x="138" y="68" fill="#10b981" font-size="8" font-family="sans-serif">Benign</text>
+            <text x="18" y="62" fill="#ef4444" font-size="8" font-family="sans-serif">Malignant</text>
+            <text x="70" y="108" fill="#60a5fa" font-size="7.5" font-family="sans-serif">SVM (98% acc) · decision boundary</text>
+          </svg>
         </div>
-        <div class="card-body">
-          <span class="card-cat cat-Deep">Deep Learning</span>
-          <div class="card-stats">
-            <div class="card-stat">3,929 MRI pairs</div>
-            <div class="card-stat">U-Net Dice: 0.9040</div>
-            <div class="card-stat">MedFusionNet Prec: 0.926</div>
-            <div class="card-stat">0.09% false positive rate</div>
-          </div>
-          <div class="card-desc">Compared U-Net, DeepLabV3+, and custom MedFusionNet for brain tumour segmentation (LGG MRI, 110 patients). U-Net: best Dice 0.9040 for detection. MedFusionNet: highest Precision 0.926 and 0.09% FP rate — best for surgical planning.</div>
-          <div class="card-tags">
-            <span class="card-tag">TensorFlow</span><span class="card-tag">U-Net</span><span class="card-tag">DeepLabV3+</span><span class="card-tag">Medical Imaging</span><span class="card-tag">Dice Score</span>
-          </div>
+        <div class="pb">
+          <div class="ph"><span class="pe">🧬</span><div><div class="ptit">Breast Cancer Classification: SVM vs RF vs XGBoost</div><div class="pmod">Predictive Analytics &amp; ML · Oct 2025</div></div></div>
+          <span class="pcat cP">Python / ML</span>
+          <div class="psg"><div class="ps">98% SVM accuracy</div><div class="ps">569 records · 30 feats</div><div class="ps">3 models compared</div><div class="ps">3D decision viz</div></div>
+          <div class="pdesc">After GridSearchCV tuning, SVM (linear, C=0.1) achieved 98% accuracy with F1=0.97 — best of SVM, RF, and XGBoost. Includes a 3D SVM decision plane visualisation and error analysis per patient.</div>
+          <div class="ptags"><span class="ptg">SVM</span><span class="ptg">XGBoost</span><span class="ptg">scikit-learn</span><span class="ptg">GridSearchCV</span></div>
+        </div>
+      </div>
+
+      <!-- 6. Spotify Big Data -->
+      <div class="pc rv" data-cat="Big Data">
+        <div class="pv">
+          <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+            <text x="8" y="26" fill="#94a3b8" font-size="9" font-family="sans-serif" font-weight="500">Hits</text>
+            <rect x="55" y="14" width="130" height="18" rx="3" fill="#1d4ed8" opacity=".85"/>
+            <text x="188" y="27" fill="#60a5fa" font-size="9" font-family="sans-serif" font-weight="700">35%</text>
+            <text x="8" y="59" fill="#94a3b8" font-size="9" font-family="sans-serif" font-weight="500">Emerging</text>
+            <rect x="55" y="47" width="88" height="18" rx="3" fill="#2563eb" opacity=".75"/>
+            <text x="146" y="60" fill="#60a5fa" font-size="9" font-family="sans-serif" font-weight="700">25%</text>
+            <text x="8" y="92" fill="#94a3b8" font-size="9" font-family="sans-serif" font-weight="500">Long-tail</text>
+            <rect x="55" y="80" width="108" height="18" rx="3" fill="#3b82f6" opacity=".6"/>
+            <text x="166" y="93" fill="#60a5fa" font-size="9" font-family="sans-serif" font-weight="700">40%</text>
+            <text x="55" y="108" fill="#475569" font-size="7.5" font-family="sans-serif">1M+ playlists · K-Means clustering</text>
+          </svg>
+        </div>
+        <div class="pb">
+          <div class="ph"><span class="pe">🎵</span><div><div class="ptit">Spotify Big Data Pipeline (Hadoop + ML Clustering)</div><div class="pmod">Big Data Analytics · Feb 2026</div></div></div>
+          <span class="pcat cB">Big Data</span>
+          <div class="psg"><div class="ps">1M+ playlists</div><div class="ps">3 popularity tiers</div><div class="ps">Silhouette analysis</div><div class="ps">MapReduce vs Spark</div></div>
+          <div class="pdesc">Distributed pipeline on Spotify's Million Playlist Dataset using Hadoop HDFS (128 MB blocks). K-Means clustering into Hits/Emerging/Long-tail tiers and DBSCAN for viral anomaly detection.</div>
+          <div class="ptags"><span class="ptg">Hadoop</span><span class="ptg">HDFS</span><span class="ptg">MapReduce</span><span class="ptg">K-Means</span></div>
+        </div>
+      </div>
+
+      <!-- 7. Plant Disease -->
+      <div class="pc rv" data-cat="Deep Learning">
+        <div class="pv">
+          <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+            <text x="8" y="26" fill="#94a3b8" font-size="9" font-family="sans-serif">Custom CNN</text>
+            <rect x="80" y="14" width="120" height="18" rx="3" fill="rgba(255,255,255,.06)"/>
+            <rect x="80" y="14" width="82" height="18" rx="3" fill="#f59e0b" opacity=".75"/>
+            <text x="164" y="27" fill="#fbbf24" font-size="9.5" font-family="sans-serif" font-weight="700">68.7%</text>
+            <text x="8" y="62" fill="#94a3b8" font-size="9" font-family="sans-serif">MobileNetV2</text>
+            <rect x="80" y="50" width="120" height="18" rx="3" fill="rgba(255,255,255,.06)"/>
+            <rect x="80" y="50" width="113" height="18" rx="3" fill="#10b981"/>
+            <text x="196" y="63" fill="#34d399" font-size="9.5" font-family="sans-serif" font-weight="700">94.3%</text>
+            <text x="8" y="95" fill="#06b6d4" font-size="8" font-family="sans-serif">▲ +25.6 pp via Transfer Learning</text>
+            <text x="8" y="108" fill="#475569" font-size="7.5" font-family="sans-serif">54,305 images · 38 disease classes · PlantVillage</text>
+          </svg>
+        </div>
+        <div class="pb">
+          <div class="ph"><span class="pe">🌿</span><div><div class="ptit">Plant Disease Detection: CNN vs MobileNetV2</div><div class="pmod">Computer Vision &amp; AI · May 2026</div></div></div>
+          <span class="pcat cD">Deep Learning</span>
+          <div class="psg"><div class="ps">54,305 images</div><div class="ps">38 disease classes</div><div class="ps">CNN: 68.72%</div><div class="ps">MobileNetV2: 94.3%</div></div>
+          <div class="pdesc">Two-stage transfer learning (freeze → fine-tune 30 base layers) on PlantVillage (54,305 images, 36:1 imbalance). MobileNetV2 reached 94.3% with >0.9 F1 across nearly all 38 disease classes.</div>
+          <div class="ptags"><span class="ptg">TensorFlow</span><span class="ptg">CNN</span><span class="ptg">MobileNetV2</span><span class="ptg">Transfer Learning</span></div>
+        </div>
+      </div>
+
+      <!-- 8. Brain Tumour -->
+      <div class="pc rv" data-cat="Deep Learning">
+        <div class="pv">
+          <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="46" cy="55" r="40" fill="#0f1f40" stroke="#3b82f6" stroke-width="1.5"/>
+            <circle cx="40" cy="50" r="15" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" opacity=".9"/>
+            <circle cx="40" cy="50" r="9" fill="rgba(239,68,68,0.2)"/>
+            <text x="24" y="106" fill="#475569" font-size="7.5" font-family="sans-serif">MRI Scan</text>
+            <text x="96" y="24" fill="#94a3b8" font-size="8.5" font-family="sans-serif">Dice Score (U-Net)</text>
+            <rect x="96" y="28" width="115" height="11" rx="2" fill="rgba(255,255,255,0.07)"/>
+            <rect x="96" y="28" width="104" height="11" rx="2" fill="#2563eb"/>
+            <text x="213" y="38" fill="#60a5fa" font-size="8.5">0.904</text>
+            <text x="96" y="56" fill="#94a3b8" font-size="8.5" font-family="sans-serif">Precision (MedFusionNet)</text>
+            <rect x="96" y="60" width="115" height="11" rx="2" fill="rgba(255,255,255,0.07)"/>
+            <rect x="96" y="60" width="107" height="11" rx="2" fill="#7c3aed"/>
+            <text x="213" y="70" fill="#a78bfa" font-size="8.5">0.926</text>
+            <text x="96" y="92" fill="#06b6d4" font-size="8" font-family="sans-serif">Specificity: 0.9991</text>
+            <text x="96" y="106" fill="#475569" font-size="7.5" font-family="sans-serif">0.09% FP · 39M pixels · 110 patients</text>
+          </svg>
+        </div>
+        <div class="pb">
+          <div class="ph"><span class="pe">🧠</span><div><div class="ptit">Brain Tumour MRI Segmentation: U-Net vs MedFusionNet</div><div class="pmod">Computer Vision &amp; AI · May 2026</div></div></div>
+          <span class="pcat cD">Deep Learning</span>
+          <div class="psg"><div class="ps">3,929 MRI pairs</div><div class="ps">U-Net Dice: 0.9040</div><div class="ps">MedFusion Prec: 0.926</div><div class="ps">0.09% FP rate</div></div>
+          <div class="pdesc">Compared U-Net, DeepLabV3+, and custom MedFusionNet on the LGG brain MRI dataset (110 patients). U-Net: best Dice 0.9040. MedFusionNet: highest precision 0.926 and 0.09% FP rate — best for surgical planning.</div>
+          <div class="ptags"><span class="ptg">U-Net</span><span class="ptg">DeepLabV3+</span><span class="ptg">Medical Imaging</span><span class="ptg">Dice Score</span></div>
         </div>
       </div>
 
@@ -505,21 +509,18 @@ footer{background:#0a1628;color:rgba(255,255,255,.45);text-align:center;padding:
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-inner">
-    <div class="section-label reveal">Experience</div>
-    <div class="section-title reveal">Work History</div>
-    <div class="section-divider reveal"></div>
-    <div class="timeline">
-
-      <div class="tl-item reveal">
-        <div class="tl-dot-wrap"><div class="tl-dot blue"></div></div>
-        <div class="tl-content">
-          <div class="tl-header">
-            <div class="tl-title">Process Lead</div>
-            <div class="tl-company">Amazon Development Centre (India)</div>
-            <div class="tl-period">Jul 2022 – Jun 2023</div>
-          </div>
-          <ul class="tl-bullets">
+  <div class="si">
+    <div class="ey rv">Experience</div>
+    <div class="st rv">Work History</div>
+    <div class="sb rv"></div>
+    <div class="tl">
+      <div class="tli rv">
+        <div class="tll"><div class="tld"></div></div>
+        <div class="tlb">
+          <div class="tlp">Jul 2022 – Jun 2023</div>
+          <div class="tlt">Process Lead</div>
+          <div class="tlc">Amazon Development Centre (India)</div>
+          <ul class="tlul">
             <li>Led end-to-end operational processes and technology deployments across cross-functional teams</li>
             <li>Built Tableau dashboards and multi-level escalation metrics, improving SLA adherence</li>
             <li>Reduced processing time by 10% through targeted quality metric optimisation</li>
@@ -527,78 +528,68 @@ footer{background:#0a1628;color:rgba(255,255,255,.45);text-align:center;padding:
           </ul>
         </div>
       </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-dot-wrap"><div class="tl-dot blue"></div></div>
-        <div class="tl-content">
-          <div class="tl-header">
-            <div class="tl-title">Senior Data Associate</div>
-            <div class="tl-company">Amazon Development Centre (India)</div>
-            <div class="tl-period">Oct 2020 – Jun 2022</div>
-          </div>
-          <ul class="tl-bullets">
-            <li>Owned Goal Success Rate for Alexa Shopping — RCA and failure metrics improved customer experience by 11%</li>
+      <div class="tli rv">
+        <div class="tll"><div class="tld"></div></div>
+        <div class="tlb">
+          <div class="tlp">Oct 2020 – Jun 2022</div>
+          <div class="tlt">Senior Data Associate</div>
+          <div class="tlc">Amazon Development Centre (India)</div>
+          <ul class="tlul">
+            <li>Owned Goal Success Rate for Alexa Shopping — RCA and failure metrics improved CX by 11%</li>
             <li>Led migration from Excel to tool-based systems, increasing team productivity by 30%</li>
             <li>Extracted data from SQL databases for daily/weekly metrics reporting across the full QA team</li>
             <li>Produced weekly and monthly business review reports with full database management</li>
           </ul>
         </div>
       </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-dot-wrap"><div class="tl-dot blue"></div></div>
-        <div class="tl-content">
-          <div class="tl-header">
-            <div class="tl-title">Data Associate</div>
-            <div class="tl-company">Amazon Development Centre (India)</div>
-            <div class="tl-period">Jul 2018 – Sep 2020</div>
-          </div>
-          <ul class="tl-bullets">
+      <div class="tli rv">
+        <div class="tll"><div class="tld"></div></div>
+        <div class="tlb">
+          <div class="tlp">Jul 2018 – Sep 2020</div>
+          <div class="tlt">Data Associate</div>
+          <div class="tlc">Amazon Development Centre (India)</div>
+          <ul class="tlul">
             <li>Scaled the team from 6 to 130 associates — led hiring, process setup, SOPs, and stakeholder comms</li>
             <li>Improved Alexa's NLU by analysing diverse data formats and delivering insights to the ML engineering team</li>
-            <li>Served as SME for Root Cause Analysis, leading ML-related analysis projects for Alexa devices</li>
+            <li>Served as SME for Root Cause Analysis, leading ML-related analysis for Alexa devices</li>
             <li>Delivered results across 50+ individual projects with standardised operating procedures</li>
           </ul>
         </div>
       </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-dot-wrap"><div class="tl-dot indigo"></div></div>
-        <div class="tl-content">
-          <div class="tl-header">
-            <div class="tl-title">Process Associate</div>
-            <div class="tl-company">IndiGo Airlines</div>
-            <div class="tl-period">Jan 2016 – Jul 2017</div>
-          </div>
-          <ul class="tl-bullets">
+      <div class="tli rv">
+        <div class="tll"><div class="tld" style="background:#4f46e5;box-shadow:0 0 0 2px #4f46e5"></div></div>
+        <div class="tlb">
+          <div class="tlp">Jan 2016 – Jul 2017</div>
+          <div class="tlt">Process Associate</div>
+          <div class="tlc">IndiGo Airlines</div>
+          <ul class="tlul">
             <li>Delivered SME-led onboarding training, reducing onboarding time by 30%</li>
             <li>Customised MS Dynamics CRM 2011 — improved system functionality and user experience</li>
             <li>Managed data import/export workflows, achieving 25% improvement in data management efficiency</li>
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-inner">
-    <div class="section-label">Contact</div>
-    <div class="section-title">Let's Connect</div>
-    <div class="section-divider"></div>
-    <p class="contact-subtitle">Open to Data Analyst roles and collaborations. Feel free to reach out.</p>
-    <div class="contact-links">
-      <a href="mailto:jijo.jain4@gmail.com" class="contact-link">
+  <div class="si">
+    <div class="ey" style="text-align:center">Contact</div>
+    <div class="st" style="text-align:center">Let's Connect</div>
+    <div class="sb" style="margin:0 auto 3rem"></div>
+    <p class="csub">Open to Data Analyst roles and collaborations. Feel free to reach out.</p>
+    <div class="cls">
+      <a href="mailto:jijo.jain4@gmail.com" class="cl">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         jijo.jain4@gmail.com
       </a>
-      <a href="https://www.linkedin.com/in/jijojain" target="_blank" rel="noopener" class="contact-link">
+      <a href="https://www.linkedin.com/in/jijojain" target="_blank" rel="noopener" class="cl">
         <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
         linkedin.com/in/jijojain
       </a>
-      <a href="https://github.com/jijo-jain" target="_blank" rel="noopener" class="contact-link">
+      <a href="https://github.com/jijo-jain" target="_blank" rel="noopener" class="cl">
         <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
         github.com/jijo-jain
       </a>
@@ -606,57 +597,112 @@ footer{background:#0a1628;color:rgba(255,255,255,.45);text-align:center;padding:
   </div>
 </section>
 
-<footer>
-  <p>© 2026 Jijo Jain · Built with HTML &amp; CSS</p>
-</footer>
+<footer><p>© 2026 Jijo Jain · Data Analyst Portfolio</p></footer>
 
 <script>
-// Navbar scroll
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
+// ── CANVAS PARTICLE NETWORK ──
+(function(){
+  const c = document.getElementById('cvs');
+  const ctx = c.getContext('2d');
+  let W, H, pts;
+  function resize(){
+    const h = document.getElementById('home');
+    W = c.width = h.offsetWidth;
+    H = c.height = h.offsetHeight;
+  }
+  function Pt(){
+    this.x = Math.random()*W; this.y = Math.random()*H;
+    this.vx = (Math.random()-.5)*.45; this.vy = (Math.random()-.5)*.45;
+    this.r = Math.random()*1.5+.5;
+  }
+  function init(){
+    resize();
+    const n = Math.min(75, Math.floor(W*H/14000));
+    pts = Array.from({length:n}, ()=>new Pt());
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<130){
+          ctx.strokeStyle=`rgba(96,165,250,${(1-d/130)*.3})`;
+          ctx.lineWidth=.7;
+          ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke();
+        }
+      }
+    }
+    pts.forEach(p=>{
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(147,197,253,0.65)'; ctx.fill();
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W) p.vx*=-1;
+      if(p.y<0||p.y>H) p.vy*=-1;
+    });
+    requestAnimationFrame(draw);
+  }
+  init(); draw();
+  window.addEventListener('resize', init);
+})();
+
+// ── NAVBAR ──
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', ()=>{ nav.classList.toggle('scrolled', window.scrollY>40); });
+
+// ── MOBILE MENU ──
+document.getElementById('burger').addEventListener('click', ()=>{
+  const m = document.getElementById('mnav');
+  m.style.display = m.style.display==='flex' ? 'none' : 'flex';
 });
+function cm(){ document.getElementById('mnav').style.display='none'; }
 
-// Mobile menu
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-hamburger.addEventListener('click', () => {
-  mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
-});
-function closeMobile() { mobileMenu.style.display = 'none'; }
+// ── ROTATING ROLE ──
+const roles = ['Data Analyst','Python Developer','ML Engineer','Tableau Expert','SQL Specialist','Big Data Analyst'];
+let ri=0;
+const rel = document.getElementById('role');
+rel.style.transition='opacity 0.3s';
+setInterval(()=>{
+  rel.style.opacity='0';
+  setTimeout(()=>{ ri=(ri+1)%roles.length; rel.textContent=roles[ri]; rel.style.opacity='1'; }, 300);
+}, 2800);
 
-// Rotating hero titles
-const titles = ['Data Analyst','Python Developer','ML Engineer','Tableau Expert','SQL Specialist','Big Data Analyst'];
-let ti = 0;
-const rotEl = document.getElementById('rotating-title');
-setInterval(() => {
-  rotEl.style.opacity = '0';
-  setTimeout(() => {
-    ti = (ti + 1) % titles.length;
-    rotEl.textContent = titles[ti];
-    rotEl.style.opacity = '1';
-  }, 300);
-}, 2500);
-rotEl.style.transition = 'opacity 0.3s';
+// ── COUNTERS ──
+function runCounter(el){
+  const t=parseInt(el.dataset.t); let cur=0;
+  const step=Math.max(1,Math.ceil(t/40));
+  const id=setInterval(()=>{ cur=Math.min(cur+step,t); el.textContent=cur; if(cur>=t)clearInterval(id); },40);
+}
+let cDone=false;
+const cObs=new IntersectionObserver(en=>{
+  en.forEach(e=>{ if(e.isIntersecting&&!cDone){ cDone=true; document.querySelectorAll('.cnt').forEach(runCounter); } });
+},{threshold:.5});
+const hs=document.querySelector('.hstats');
+if(hs) cObs.observe(hs);
 
-// Project filtering
-document.getElementById('filter-row').addEventListener('click', e => {
-  const btn = e.target.closest('.filter-btn');
-  if (!btn) return;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const cat = btn.dataset.cat;
-  document.querySelectorAll('.project-card').forEach(card => {
-    const match = cat === 'All' || card.dataset.cat === cat;
-    card.classList.toggle('hidden', !match);
+// ── PROJECT FILTER ──
+document.querySelectorAll('.fbn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.fbn').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    const f=btn.dataset.f;
+    document.querySelectorAll('.pc').forEach(c=>{ c.classList.toggle('hide', f!=='All'&&c.dataset.cat!==f); });
   });
 });
 
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// ── SKILL BARS ──
+let sbDone=false;
+const sbObs=new IntersectionObserver(en=>{
+  en.forEach(e=>{ if(e.isIntersecting&&!sbDone){ sbDone=true; document.querySelectorAll('.brf').forEach(b=>b.classList.add('go')); } });
+},{threshold:.3});
+const sk=document.getElementById('skills');
+if(sk) sbObs.observe(sk);
+
+// ── SCROLL REVEAL ──
+const rvObs=new IntersectionObserver(en=>{
+  en.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); rvObs.unobserve(e.target); } });
+},{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
 </script>
 </body>
 </html>
